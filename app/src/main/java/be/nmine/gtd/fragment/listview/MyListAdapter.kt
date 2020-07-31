@@ -1,0 +1,24 @@
+package be.nmine.gtd.fragment.listview
+
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.FragmentActivity
+import be.nmine.gtd.R
+
+class MyListAdapter(private val context: FragmentActivity?, private val title: Array<String>, private val description: Array<String>)
+    : ArrayAdapter<String>(context!!, R.layout.custom_list, title) {
+
+    override fun getView(position: Int, view: View?, parent: ViewGroup): View {
+        val inflater = context!!.layoutInflater
+        val rowView = inflater.inflate(R.layout.custom_list, null, true)
+
+        val titleText = rowView.findViewById(R.id.title) as TextView
+        val subtitleText = rowView.findViewById(R.id.description) as TextView
+
+        titleText.text = title[position]
+        subtitleText.text = description[position]
+
+        return rowView
+    }
+}

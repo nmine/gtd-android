@@ -2,13 +2,10 @@ package be.nmine.gtd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import be.nmine.gtd.fragment.ActionsFragment
-import be.nmine.gtd.fragment.InboxFragment
+import be.nmine.gtd.fragment.actions.ActionsFragment
+import be.nmine.gtd.fragment.inbox.InboxFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener
-import kotlinx.android.synthetic.main.fragment_actions.*
 
 class MainActivity : AppCompatActivity() {
 

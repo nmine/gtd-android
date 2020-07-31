@@ -1,4 +1,4 @@
-package be.nmine.gtd.fragment
+package be.nmine.gtd.fragment.inbox
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
