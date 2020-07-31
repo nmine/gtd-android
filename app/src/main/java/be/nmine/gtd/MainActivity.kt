@@ -17,15 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navigationBar = findViewById<BottomNavigationView>(R.id.navigation_bar)
         navigationBar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        val listView = recipe_list_view
-        val recipeList = arrayOf("test","test3","test4")
-        val listItems = arrayOfNulls<String>(recipeList.size)
-        for (i in 0 until recipeList.size) {
-            val recipe = recipeList[i]
-            listItems[i] = recipe
-        }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
-        listView.adapter = adapter
+
     }
 
     private val mOnNavigationItemSelectedListener = OnNavigationItemSelectedListener {
