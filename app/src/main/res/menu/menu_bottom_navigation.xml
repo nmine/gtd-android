@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_home"
-        android:title="Home"
+    <item android:id="@+id/menu_inbox"
+        android:title="Inbox"
         android:icon="@drawable/ic_baseline_inbox_24"
 
         />
-    <item android:id="@+id/menu_notification"
-        android:title="Notification"
-        />
-    <item android:id="@+id/menu_search"
-        android:title="Search"
-        />
-    <item android:id="@+id/menu_profile"
-        android:title="Profile"
+    <item android:id="@+id/menu_actions"
+        android:title="Actions"
+        android:icon="@drawable/ic_baseline_double_arrow_24"
         />
 </menu>
