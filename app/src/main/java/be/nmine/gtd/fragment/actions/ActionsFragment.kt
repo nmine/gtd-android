@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import be.nmine.gtd.R
 import be.nmine.gtd.fragment.listview.MyListAdapter
+import kotlinx.android.synthetic.main.custom_list.*
 import kotlinx.android.synthetic.main.fragment_actions.*
 
 
