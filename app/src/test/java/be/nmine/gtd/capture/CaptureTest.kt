@@ -5,7 +5,8 @@ import be.nmine.gtd.core.application.CaptureStuffHandler
 import be.nmine.gtd.core.domain.Basket
 import be.nmine.gtd.core.domain.Stuff
 import be.nmine.gtd.core.infrastructure.BasketInMemory
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -29,7 +30,7 @@ class CaptureTest {
     }
 
     @DisplayName("Given I'm a user\n"+
-            "When When I capture a rule without a name\n"+
+            "When I capture a rule without a name\n"+
             "Then The stuff is not present in the Basket\n")
     @Test
     fun `should_not_be_possible_to_create_invalid_stuff_in_inbox`() {
