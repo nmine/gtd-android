@@ -1,9 +1,10 @@
 package be.nmine.gtd.core.infrastructure
 
-import be.nmine.gtd.core.domain.Project
-import be.nmine.gtd.core.domain.ProjectRepository
+import be.nmine.gtd.core.domain.project.Project
+import be.nmine.gtd.core.domain.project.ProjectRepository
 
-class ProjectRepositoryInmemory : ProjectRepository {
+class ProjectRepositoryInmemory :
+    ProjectRepository {
     private var projects: MutableList<Project> = mutableListOf()
 
     override fun addProject(project: Project) {

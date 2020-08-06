@@ -1,7 +1,17 @@
 package be.nmine.gtd.clarify
 
-import be.nmine.gtd.core.application.*
-import be.nmine.gtd.core.domain.*
+import be.nmine.gtd.core.application.capture.CaptureStuffCommand
+import be.nmine.gtd.core.application.capture.CaptureStuffHandler
+import be.nmine.gtd.core.application.clarify.*
+import be.nmine.gtd.core.application.clarify.action.ClarifyStuffToActionCommand
+import be.nmine.gtd.core.application.clarify.project.CreateProjectCommand
+import be.nmine.gtd.core.application.clarify.project.CreateProjectHandler
+import be.nmine.gtd.core.application.clarify.trash.ClarifyStuffToMoveToTrash
+import be.nmine.gtd.core.domain.action.ActionRepository
+import be.nmine.gtd.core.domain.basket.Basket
+import be.nmine.gtd.core.domain.project.ProjectRepository
+import be.nmine.gtd.core.domain.stuff.Stuff
+import be.nmine.gtd.core.domain.trash.TrashRepository
 import be.nmine.gtd.core.infrastructure.ActionRepositoryInMemory
 import be.nmine.gtd.core.infrastructure.BasketInMemory
 import be.nmine.gtd.core.infrastructure.ProjectRepositoryInmemory
@@ -30,7 +40,14 @@ class ClarifyTest {
         //Given
         val stuff = addOneStuffInBasket("Appeller Christelle")
         //When
-        ClarifyStuffHandler(actionRepository, trashRepository).handle(ClarifyStuffToActionCommand(stuff))
+        ClarifyStuffHandler(
+            actionRepository,
+            trashRepository
+        ).handle(
+            ClarifyStuffToActionCommand(
+                stuff
+            )
+        )
         //Then
         assertEquals(actionRepository.getAction(stuff.name).name, stuff.name)
     }
@@ -44,7 +61,14 @@ class ClarifyTest {
         //Given
         val stuff = addOneStuffInBasket("Appeller Christelle")
         //When
-        ClarifyStuffHandler(actionRepository, trashRepository).handle(ClarifyStuffToMoveToTrash(stuff))
+        ClarifyStuffHandler(
+            actionRepository,
+            trashRepository
+        ).handle(
+            ClarifyStuffToMoveToTrash(
+                stuff
+            )
+        )
         //Then
         assertEquals(trashRepository.getStuff(stuff.name).name, stuff.name)
     }
@@ -60,14 +84,24 @@ class ClarifyTest {
         //Given
         val projectName = "Application GTD"
         //When
-        CreateProjectHandler(projectRepository).handle(CreateProjectCommand(projectName))
+        CreateProjectHandler(
+            projectRepository
+        ).handle(
+            CreateProjectCommand(
+                projectName
+            )
+        )
         //Then
         assertEquals(projectRepository.getProject(projectName).name, projectName)
     }
 
-    private fun addOneStuffInBasket(stuffName: String):Stuff {
+    private fun addOneStuffInBasket(stuffName: String): Stuff {
         val stuff = Stuff(stuffName)
-        CaptureStuffHandler(basket).handle(CaptureStuffCommand(stuff))
+        CaptureStuffHandler(basket).handle(
+            CaptureStuffCommand(
+                stuff
+            )
+        )
         return stuff
     }
 }

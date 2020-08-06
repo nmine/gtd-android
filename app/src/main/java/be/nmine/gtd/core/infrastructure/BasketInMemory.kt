@@ -1,7 +1,7 @@
 package be.nmine.gtd.core.infrastructure
 
-import be.nmine.gtd.core.domain.Basket
-import be.nmine.gtd.core.domain.Stuff
+import be.nmine.gtd.core.domain.basket.Basket
+import be.nmine.gtd.core.domain.stuff.Stuff
 
 class BasketInMemory : Basket {
 
@@ -11,7 +11,7 @@ class BasketInMemory : Basket {
         stuffs.add(stuff)
     }
 
-    override fun getStuff(stuff: String):Stuff {
+    override fun getStuff(stuff: String): Stuff {
         return stuffs.filter { listStuff -> listStuff.name == stuff }.first()
     }
 }

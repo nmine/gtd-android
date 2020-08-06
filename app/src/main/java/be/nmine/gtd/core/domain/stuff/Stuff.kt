@@ -1,4 +1,4 @@
-package be.nmine.gtd.core.domain
+package be.nmine.gtd.core.domain.stuff
 
 import kotlin.IllegalArgumentException
 

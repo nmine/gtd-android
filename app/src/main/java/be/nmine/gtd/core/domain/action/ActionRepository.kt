@@ -1,4 +1,6 @@
-package be.nmine.gtd.core.domain
+package be.nmine.gtd.core.domain.action
+
+import be.nmine.gtd.core.domain.action.Action
 
 interface ActionRepository {
 
