@@ -1,6 +1,6 @@
-package be.nmine.gtd.core.application
+package be.nmine.gtd.core.application.capture
 
-import be.nmine.gtd.core.domain.Basket
+import be.nmine.gtd.core.domain.basket.Basket
 
 class CaptureStuffHandler(basket : Basket) {
 

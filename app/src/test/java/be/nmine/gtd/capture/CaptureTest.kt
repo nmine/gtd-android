@@ -1,9 +1,9 @@
 package be.nmine.gtd.capture
 
-import be.nmine.gtd.core.application.CaptureStuffCommand
-import be.nmine.gtd.core.application.CaptureStuffHandler
-import be.nmine.gtd.core.domain.Basket
-import be.nmine.gtd.core.domain.Stuff
+import be.nmine.gtd.core.application.capture.CaptureStuffCommand
+import be.nmine.gtd.core.application.capture.CaptureStuffHandler
+import be.nmine.gtd.core.domain.basket.Basket
+import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.core.infrastructure.BasketInMemory
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -24,7 +24,11 @@ class CaptureTest {
     @Test
     fun `can create a valid stuff in basket`() {
         val stuffName = "Appeller Christelle"
-        CaptureStuffHandler(basket).handle(CaptureStuffCommand(Stuff(stuffName)))
+        CaptureStuffHandler(basket).handle(
+            CaptureStuffCommand(
+                Stuff(stuffName)
+            )
+        )
         //Then
         assertEquals(basket.getStuff(stuffName).name, stuffName)
     }
@@ -35,7 +39,11 @@ class CaptureTest {
     @Test
     fun `should_not_be_possible_to_create_invalid_stuff_in_inbox`() {
         assertThrows(IllegalArgumentException::class.java) {
-            CaptureStuffHandler(basket).handle(CaptureStuffCommand(Stuff("")))
+            CaptureStuffHandler(basket).handle(
+                CaptureStuffCommand(
+                    Stuff("")
+                )
+            )
         }
     }
 }

@@ -1,9 +1,9 @@
 package be.nmine.gtd.core.infrastructure
 
-import be.nmine.gtd.core.domain.Stuff
-import be.nmine.gtd.core.domain.TrashRepository
+import be.nmine.gtd.core.domain.stuff.Stuff
+import be.nmine.gtd.core.domain.trash.TrashRepository
 
-class TrashRepositoryInmemory:TrashRepository {
+class TrashRepositoryInmemory: TrashRepository {
 
     val trash : MutableList<Stuff> = mutableListOf()
 
