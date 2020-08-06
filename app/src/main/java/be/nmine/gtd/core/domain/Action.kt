@@ -1,3 +1,3 @@
 package be.nmine.gtd.core.domain
 
-data class Action(val name: Stuff)
+data class Action(val name:String)
