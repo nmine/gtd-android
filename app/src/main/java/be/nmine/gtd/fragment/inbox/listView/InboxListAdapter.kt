@@ -1,25 +1,25 @@
-package be.nmine.gtd.fragment.listview
+package be.nmine.gtd.fragment.inbox.listView
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
-import kotlinx.android.synthetic.main.custom_list.*
 
-class MyListAdapter(private val context: FragmentActivity?, private val title: Array<String>, private val description: Array<String>)
-    : ArrayAdapter<String>(context!!, R.layout.custom_list, title) {
+class InboxListAdapter(private val context: FragmentActivity?, private val description: List<String>)
+    : ArrayAdapter<String>(context!!, R.layout.inbox_list_view_items, description) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context!!.layoutInflater
-        val rowView = inflater.inflate(R.layout.custom_list, null, true)
+        val rowView = inflater.inflate(R.layout.inbox_list_view_items, null, true)
 
         val subtitleText = rowView.findViewById(R.id.description) as TextView
         val three_dots = rowView.findViewById(R.id.three_dots) as AppCompatImageButton
 
-        subtitleText.text = description[position]
+        subtitleText.text = description[0]
         three_dots.setOnClickListener{
             val popup = PopupMenu(context,it)
             popup.setOnMenuItemClickListener {

@@ -14,4 +14,8 @@ class BasketInMemory : Basket {
     override fun getStuff(stuff: String): Stuff {
         return stuffs.filter { listStuff -> listStuff.name == stuff }.first()
     }
+
+    override fun getAll(): List<Stuff> {
+        return stuffs
+    }
 }
