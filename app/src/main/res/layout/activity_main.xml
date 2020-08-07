@@ -35,7 +35,7 @@
         android:layout_alignParentBottom="true"
         app:elevation="2dp"
         app:itemIconSize="24dp"
-        app:menu="@menu/menu_bottom_navigation"
+        app:menu="@menu/common_menu_bottom_navigation"
         android:outlineSpotShadowColor="@color/colorAccent"
         />
 
