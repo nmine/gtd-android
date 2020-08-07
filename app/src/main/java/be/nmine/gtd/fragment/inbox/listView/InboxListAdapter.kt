@@ -30,7 +30,7 @@ class InboxListAdapter(private val context: FragmentActivity?, private val descr
                     else -> false
                 }
             }
-            popup.inflate(R.menu.menu_stuff)
+            popup.inflate(R.menu.inbox_menu_pop_up_action_list)
             popup.show()
         }
 
