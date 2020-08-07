@@ -1,8 +1,7 @@
 package be.nmine.gtd
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import be.nmine.gtd.fragment.actions.ActionsFragment
 import be.nmine.gtd.fragment.inbox.InboxFragment
 import com.afollestad.materialdialogs.MaterialDialog

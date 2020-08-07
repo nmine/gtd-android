@@ -8,6 +8,7 @@ class GetAllStuffHandler(val basket: Basket) {
 
     init {
         basket.saveStuff(Stuff("test de stuff"))
+        basket.saveStuff(Stuff("test de stuff2, test de stuff2, ,test de stuff2, "))
     }
     fun handle(): List<StuffDTO> {
         return basket.getAll().map { stuff -> StuffDTO(stuff.name) }

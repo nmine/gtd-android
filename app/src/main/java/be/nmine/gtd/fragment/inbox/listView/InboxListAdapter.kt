@@ -19,7 +19,7 @@ class InboxListAdapter(private val context: FragmentActivity?, private val descr
         val subtitleText = rowView.findViewById(R.id.description) as TextView
         val three_dots = rowView.findViewById(R.id.three_dots) as AppCompatImageButton
 
-        subtitleText.text = description[0]
+        subtitleText.text = description[position]
         three_dots.setOnClickListener{
             val popup = PopupMenu(context,it)
             popup.setOnMenuItemClickListener {

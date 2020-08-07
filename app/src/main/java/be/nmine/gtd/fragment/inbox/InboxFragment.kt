@@ -10,6 +10,7 @@ import be.nmine.gtd.core.application.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.core.infrastructure.BasketInMemory
 import be.nmine.gtd.fragment.inbox.listView.InboxListAdapter
 import kotlinx.android.synthetic.main.inbox_fragment_list_view.*
+import kotlinx.android.synthetic.main.inbox_list_view_items.*
 
 class InboxFragment : Fragment() {
     override fun onCreateView(
@@ -25,5 +26,9 @@ class InboxFragment : Fragment() {
         val myListAdapter =
             InboxListAdapter(activity, map)
         recipe_list_view.adapter = myListAdapter
+
+        three_dots.setOnClickListener{
+
+        }
     }
 }
