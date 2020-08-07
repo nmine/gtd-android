@@ -3,8 +3,9 @@ package be.nmine.gtd.core.application.getAllStuffs
 import be.nmine.gtd.StuffDTO
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
+import javax.inject.Inject
 
-class GetAllStuffHandler(val basket: Basket) {
+class GetAllStuffHandler @Inject constructor(val basket: Basket) {
 
     init {
         basket.saveStuff(Stuff("test de stuff"))

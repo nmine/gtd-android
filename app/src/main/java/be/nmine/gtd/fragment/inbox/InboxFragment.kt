@@ -9,10 +9,17 @@ import be.nmine.gtd.R
 import be.nmine.gtd.core.application.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.core.infrastructure.BasketInMemory
 import be.nmine.gtd.fragment.inbox.listView.InboxListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.inbox_fragment_list_view.*
-import kotlinx.android.synthetic.main.inbox_list_view_items.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class InboxFragment : Fragment() {
+
+    @Inject
+    lateinit var getAllStuffHandler: GetAllStuffHandler
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,12 +30,11 @@ class InboxFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val stuffDtos = GetAllStuffHandler(BasketInMemory()).handle()
         val map = stuffDtos.map { stuffDTO -> stuffDTO.name }
-        val myListAdapter =
-            InboxListAdapter(activity, map)
+        val myListAdapter = InboxListAdapter(activity, map)
         recipe_list_view.adapter = myListAdapter
 
-        three_dots.setOnClickListener{
-
-        }
+//        three_dots.setOnClickListener{
+//
+//        }
     }
 }
