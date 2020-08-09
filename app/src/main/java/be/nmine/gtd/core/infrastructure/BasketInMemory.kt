@@ -2,8 +2,9 @@ package be.nmine.gtd.core.infrastructure
 
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
+import javax.inject.Inject
 
-class BasketInMemory : Basket {
+class BasketInMemory  @Inject constructor(): Basket {
 
     private var stuffs: MutableList<Stuff> = mutableListOf()
 
