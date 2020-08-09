@@ -1,8 +1,9 @@
 package be.nmine.gtd.core.application.capture
 
 import be.nmine.gtd.core.domain.basket.Basket
+import javax.inject.Inject
 
-class CaptureStuffHandler(basket : Basket) {
+class CaptureStuffHandler @Inject constructor(basket : Basket) {
 
     val basket: Basket
 
