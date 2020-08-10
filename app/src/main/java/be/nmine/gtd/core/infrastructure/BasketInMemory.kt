@@ -2,9 +2,8 @@ package be.nmine.gtd.core.infrastructure
 
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
-import javax.inject.Inject
 
-class BasketInMemory  @Inject constructor(): Basket {
+class BasketInMemory : Basket {
 
     private var stuffs: MutableList<Stuff> = mutableListOf()
 
@@ -16,7 +15,11 @@ class BasketInMemory  @Inject constructor(): Basket {
         return stuffs.filter { listStuff -> listStuff.name == stuff }.first()
     }
 
-    override fun getAll(): List<Stuff> {
+    override fun getAll(callback: (List<Stuff>) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
+     fun getAll(): List<Stuff> {
         return stuffs
     }
 }

@@ -1,8 +1,8 @@
 package be.nmine.gtd.clarify
 
-import be.nmine.gtd.core.application.capture.CaptureStuffCommand
-import be.nmine.gtd.core.application.capture.CaptureStuffHandler
-import be.nmine.gtd.core.application.clarify.*
+import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffCommand
+import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffHandler
+import be.nmine.gtd.core.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.core.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.core.application.clarify.project.CreateProjectCommand
 import be.nmine.gtd.core.application.clarify.project.CreateProjectHandler
@@ -97,7 +97,9 @@ class ClarifyTest {
 
     private fun addOneStuffInBasket(stuffName: String): Stuff {
         val stuff = Stuff(stuffName)
-        CaptureStuffHandler(basket).handle(
+        CaptureStuffHandler(
+            basket
+        ).handle(
             CaptureStuffCommand(
                 stuff
             )

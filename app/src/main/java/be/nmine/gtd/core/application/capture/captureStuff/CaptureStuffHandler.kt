@@ -1,4 +1,4 @@
-package be.nmine.gtd.core.application.capture
+package be.nmine.gtd.core.application.capture.captureStuff
 
 import be.nmine.gtd.core.domain.basket.Basket
 import javax.inject.Inject

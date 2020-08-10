@@ -1,7 +1,7 @@
 package be.nmine.gtd.capture
 
-import be.nmine.gtd.core.application.capture.CaptureStuffCommand
-import be.nmine.gtd.core.application.capture.CaptureStuffHandler
+import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffCommand
+import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.core.infrastructure.BasketInMemory
@@ -24,7 +24,9 @@ class CaptureTest {
     @Test
     fun `can create a valid stuff in basket`() {
         val stuffName = "Appeller Christelle"
-        CaptureStuffHandler(basket).handle(
+        CaptureStuffHandler(
+            basket
+        ).handle(
             CaptureStuffCommand(
                 Stuff(stuffName)
             )
@@ -39,7 +41,9 @@ class CaptureTest {
     @Test
     fun `should_not_be_possible_to_create_invalid_stuff_in_inbox`() {
         assertThrows(IllegalArgumentException::class.java) {
-            CaptureStuffHandler(basket).handle(
+            CaptureStuffHandler(
+                basket
+            ).handle(
                 CaptureStuffCommand(
                     Stuff("")
                 )
