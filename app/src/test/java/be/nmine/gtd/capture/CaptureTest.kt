@@ -35,6 +35,20 @@ class CaptureTest {
         assertEquals(basket.getStuff(stuffName).name, stuffName)
     }
 
+    @Test
+    fun `can get all stuffs`() {
+        val stuffName = "Appeller Christelle"
+        CaptureStuffHandler(
+            basket
+        ).handle(
+            CaptureStuffCommand(
+                Stuff(stuffName)
+            )
+        )
+        //Then
+        assertEquals(basket.getStuff(stuffName).name, stuffName)
+    }
+
     @DisplayName("Given I'm a user\n"+
             "When I capture a rule without a name\n"+
             "Then The stuff is not present in the Basket\n")
