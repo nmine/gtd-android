@@ -1,13 +1,14 @@
-package be.nmine.gtd.core.infrastructure
+package be.nmine.gtd.core.infrastructure.basket
 
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
+import kotlinx.coroutines.flow.Flow
 
 class BasketInMemory : Basket {
 
     private var stuffs: MutableList<Stuff> = mutableListOf()
 
-    override fun saveStuff(stuff: Stuff) {
+    override suspend fun saveStuff(stuff: Stuff) {
         stuffs.add(stuff)
     }
 
@@ -15,11 +16,8 @@ class BasketInMemory : Basket {
         return stuffs.filter { listStuff -> listStuff.name == stuff }.first()
     }
 
-    override fun getAll(callback: (List<Stuff>) -> Unit) {
+    override fun getAll(): Flow<List<Stuff?>> {
         TODO("Not yet implemented")
     }
 
-     fun getAll(): List<Stuff> {
-        return stuffs
-    }
 }

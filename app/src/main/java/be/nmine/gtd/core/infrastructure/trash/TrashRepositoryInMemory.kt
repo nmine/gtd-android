@@ -1,4 +1,4 @@
-package be.nmine.gtd.core.infrastructure
+package be.nmine.gtd.core.infrastructure.trash
 
 import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.core.domain.trash.TrashRepository

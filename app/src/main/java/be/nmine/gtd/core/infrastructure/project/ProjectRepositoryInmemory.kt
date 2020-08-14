@@ -1,4 +1,4 @@
-package be.nmine.gtd.core.infrastructure
+package be.nmine.gtd.core.infrastructure.project
 
 import be.nmine.gtd.core.domain.project.Project
 import be.nmine.gtd.core.domain.project.ProjectRepository

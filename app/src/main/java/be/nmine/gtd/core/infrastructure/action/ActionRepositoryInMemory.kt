@@ -1,4 +1,4 @@
-package be.nmine.gtd.core.infrastructure
+package be.nmine.gtd.core.infrastructure.action
 
 import be.nmine.gtd.core.domain.action.Action
 import be.nmine.gtd.core.domain.action.ActionRepository

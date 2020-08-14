@@ -18,11 +18,13 @@ package be.nmine.gtd.core.infrastructure
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import be.nmine.gtd.core.infrastructure.basket.BasketRoomDao
+import be.nmine.gtd.core.infrastructure.basket.StuffRoom
 
 /**
  * SQLite Database for storing the logs.
  */
-@Database(entities = arrayOf(Stuff::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(StuffRoom::class), version = 1, exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
-    abstract fun stuffDao(): StuffDao
+    abstract fun stuffDao(): BasketRoomDao
 }

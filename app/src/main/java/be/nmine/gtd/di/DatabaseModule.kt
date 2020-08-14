@@ -19,7 +19,7 @@ package be.nmine.gtd.di
 import android.content.Context
 import androidx.room.Room
 import be.nmine.gtd.core.infrastructure.ApplicationDatabase
-import be.nmine.gtd.core.infrastructure.StuffDao
+import be.nmine.gtd.core.infrastructure.basket.BasketRoomDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +42,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideLogDao(database: ApplicationDatabase): StuffDao {
+    fun provideLogDao(database: ApplicationDatabase): BasketRoomDao {
         return database.stuffDao()
     }
 }

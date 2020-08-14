@@ -1,10 +1,11 @@
 package be.nmine.gtd.core.domain.basket
 
 import be.nmine.gtd.core.domain.stuff.Stuff
+import kotlinx.coroutines.flow.Flow
 
 interface Basket {
-    fun saveStuff(stuff: Stuff)
+    suspend fun saveStuff(stuff: Stuff)
     fun getStuff(stuff: String): Stuff
-    fun getAll(callback: (List<Stuff>) -> Unit)
+    fun getAll(): Flow<List<Stuff?>>
 
 }

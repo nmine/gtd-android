@@ -1,7 +1,7 @@
 package be.nmine.gtd.di
 
 import be.nmine.gtd.core.domain.basket.Basket
-import be.nmine.gtd.core.infrastructure.StuffDataSource
+import be.nmine.gtd.core.infrastructure.basket.BasketRoom
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,13 +15,6 @@ abstract class Module {
 
     @Binds
     @Singleton
-    abstract fun bindBasket(impl: StuffDataSource): Basket
+    abstract fun bindBasket(impl: BasketRoom): Basket
 
-//    @Singleton
-//    @Binds
-//    abstract fun bindCaptureStuffHandler(impl: CaptureStuffHandler): CaptureStuffHandler
-
-//    @Binds
-//    @Singleton
-//    abstract fun bindGetAllStuffHandler(impl: GetAllStuffHandler): GetAllStuffHandler
 }

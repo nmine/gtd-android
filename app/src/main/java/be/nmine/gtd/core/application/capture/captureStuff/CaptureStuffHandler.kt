@@ -10,7 +10,7 @@ class CaptureStuffHandler @Inject constructor(basket : Basket) {
     init{
         this.basket = basket
     }
-    fun handle(command: CaptureStuffCommand) {
+    suspend fun handle(command: CaptureStuffCommand) {
         basket.saveStuff(command.stuff)
     }
 }

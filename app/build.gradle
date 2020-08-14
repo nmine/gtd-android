@@ -30,16 +30,43 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
 
 dependencies {
-    def room_version = "2.2.5"
+    // When using Kotlin.
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    //Coroutine
+    implementation "androidx.room:room-ktx:2.2.5"
+    implementation "androidx.core:core-ktx:1.3.1"
+    //ktx android
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.fragment:fragment-ktx:1.0.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    //Lifecycle
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     //Room
+    def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     //Hilt
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
     //Material
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
     api 'com.google.android.material:material:1.1.0-alpha06'
