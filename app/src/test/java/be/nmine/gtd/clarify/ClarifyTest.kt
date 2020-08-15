@@ -95,7 +95,7 @@ class ClarifyTest {
         assertEquals(projectRepository.getProject(projectName).name, projectName)
     }
 
-    private suspend fun addOneStuffInBasket(stuffName: String): Stuff {
+     private suspend fun addOneStuffInBasket(stuffName: String): Stuff {
         val stuff = Stuff(stuffName)
         CaptureStuffHandler(
             basket

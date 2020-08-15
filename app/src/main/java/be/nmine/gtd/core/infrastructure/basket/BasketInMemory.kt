@@ -3,6 +3,7 @@ package be.nmine.gtd.core.infrastructure.basket
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class BasketInMemory : Basket {
 
@@ -17,7 +18,7 @@ class BasketInMemory : Basket {
     }
 
     override fun getAll(): Flow<List<Stuff?>> {
-        TODO("Not yet implemented")
+        return flowOf(stuffs)
     }
 
 }

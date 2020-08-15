@@ -1,6 +1,7 @@
 package be.nmine.gtd.capture
 
 import be.nmine.gtd.StuffDTO
+import be.nmine.gtd.clarify.ClarifyTest
 import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.core.application.capture.getAllStuffs.GetAllStuffHandler
@@ -36,18 +37,33 @@ class CaptureTest {
         assertEquals(basket.getStuff(stuffName).name, stuffName)
     }
 
-//    @InternalCoroutinesApi
-//    @Test
-//     fun `can get all stuffs`() = runBlocking  {
-//        val stuffName = "Appeller Christelle"
-//        val flow = GetAllStuffHandler(
-//            basket
-//        ).handle()
-//        //Then
-//        flow.take(1).collect { value: List<StuffDTO> ->
-//            assertEquals(value[0].name, stuffName)
-//        }
-//    }
+    @InternalCoroutinesApi
+    @Test
+     fun `can get all stuffs`() = runBlocking  {
+        //Given
+        val stuffName = "Appeller Christelle"
+        addOneStuffInBasket(stuffName)
+        //When
+        val flow = GetAllStuffHandler(
+            basket
+        ).handle()
+        //Then
+        flow.take(1).collect { value: List<Stuff?> ->
+            assertEquals(value[0]!!.name, stuffName)
+        }
+    }
+
+    private suspend fun addOneStuffInBasket(stuffName: String): Stuff {
+        val stuff = Stuff(stuffName)
+        CaptureStuffHandler(
+            basket
+        ).handle(
+            CaptureStuffCommand(
+                stuff
+            )
+        )
+        return stuff
+    }
 
 
 //    Issue between  suspend function and assertThrows https://github.com/junit-team/junit5/pull/1853
