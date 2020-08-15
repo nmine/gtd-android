@@ -4,9 +4,11 @@ import be.nmine.gtd.core.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.core.application.clarify.trash.ClarifyStuffToMoveToTrash
 import be.nmine.gtd.core.domain.action.Action
 import be.nmine.gtd.core.domain.action.ActionRepository
+import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.trash.TrashRepository
 
 class ClarifyStuffHandler(
+    val basket: Basket,
     val actionRepository: ActionRepository,
     val trashRepository: TrashRepository
 ) {
@@ -21,6 +23,7 @@ class ClarifyStuffHandler(
             )
             is ClarifyStuffToMoveToTrash -> trashRepository.addStuff(command.stuff)
         }
+        basket.remove(command.stuff)
     }
 
 }

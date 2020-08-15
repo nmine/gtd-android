@@ -20,11 +20,13 @@ import org.junit.jupiter.api.Test
 class CaptureTest {
     val basket: Basket = BasketInMemory()
 
-    @DisplayName("Given I'm a user\n"+
-            "When the stuff with name'Appeller Christelle'is captured\n"+
-            "Then the stuff is is present in the Basket\n")
+    @DisplayName(
+        "Given I'm a user\n" +
+                "When the stuff with name'Appeller Christelle'is captured\n" +
+                "Then the stuff is is present in the Basket\n"
+    )
     @Test
-    fun `can create a valid stuff in basket`()= runBlocking  {
+    fun `can create a valid stuff in basket`() = runBlocking {
         val stuffName = "Appeller Christelle"
         CaptureStuffHandler(
             basket
@@ -39,16 +41,15 @@ class CaptureTest {
 
     @InternalCoroutinesApi
     @Test
-     fun `can get all stuffs`() = runBlocking  {
+    fun `can get all stuffs`() = runBlocking {
         //Given
         val stuffName = "Appeller Christelle"
         addOneStuffInBasket(stuffName)
         //When
-        val flow = GetAllStuffHandler(
-            basket
-        ).handle()
+        val flow = GetAllStuffHandler(basket)
+            .handle()
         //Then
-        flow.take(1).collect { value: List<Stuff?> ->
+        flow.collect { value: List<Stuff?> ->
             assertEquals(value[0]!!.name, stuffName)
         }
     }

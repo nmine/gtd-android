@@ -14,6 +14,6 @@ interface BasketRoomDao {
     @Insert
     suspend fun insertAll(stuffRoom: StuffRoom)
 
-    @Delete
-    fun delete(stuffRoom: StuffRoom)
+    @Query("DELETE FROM stuffs WHERE name = :name")
+    fun delete(name:String)
 }

@@ -9,10 +9,9 @@ import javax.inject.Inject
 class BasketRoom @Inject constructor(private val stuffDao: BasketRoomDao) : Basket {
 
 
-     override suspend fun saveStuff(stuff: Stuff) {
-        var stuff: StuffRoom =
-            StuffRoom(name = "toto")
-         stuffDao.insertAll(stuff)
+    override suspend fun saveStuff(stuff: Stuff) {
+        var stuff = StuffRoom(name = "toto")
+        stuffDao.insertAll(stuff)
     }
 
     override fun getStuff(stuff: String): Stuff {
@@ -25,6 +24,10 @@ class BasketRoom @Inject constructor(private val stuffDao: BasketRoomDao) : Bask
                 stuffRoom.name?.let { Stuff(it) }
             }
         }
+    }
+
+    override fun remove(stuff: Stuff) {
+        stuffDao.delete(stuff.name)
     }
 
 }

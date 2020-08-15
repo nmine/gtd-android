@@ -21,4 +21,8 @@ class BasketInMemory : Basket {
         return flowOf(stuffs)
     }
 
+    override fun remove(stuff: Stuff) {
+        stuffs.remove(stuff)
+    }
+
 }
