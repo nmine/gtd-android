@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
+import be.nmine.gtd.StuffDTO
 
 class InboxListAdapter(private val context: FragmentActivity?, private val description: List<String>)
     : ArrayAdapter<String>(context!!, R.layout.inbox_list_view_items, description) {

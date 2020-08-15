@@ -1,10 +1,15 @@
 package be.nmine.gtd.capture
 
+import be.nmine.gtd.StuffDTO
 import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffHandler
+import be.nmine.gtd.core.application.capture.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.core.domain.basket.Basket
 import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.core.infrastructure.basket.BasketInMemory
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -31,19 +36,19 @@ class CaptureTest {
         assertEquals(basket.getStuff(stuffName).name, stuffName)
     }
 
-    @Test
-     fun `can get all stuffs`() = runBlocking  {
-        val stuffName = "Appeller Christelle"
-        CaptureStuffHandler(
-            basket
-        ).handle(
-            CaptureStuffCommand(
-                Stuff(stuffName)
-            )
-        )
-        //Then
-        assertEquals(basket.getStuff(stuffName).name, stuffName)
-    }
+//    @InternalCoroutinesApi
+//    @Test
+//     fun `can get all stuffs`() = runBlocking  {
+//        val stuffName = "Appeller Christelle"
+//        val flow = GetAllStuffHandler(
+//            basket
+//        ).handle()
+//        //Then
+//        flow.take(1).collect { value: List<StuffDTO> ->
+//            assertEquals(value[0].name, stuffName)
+//        }
+//    }
+
 
 //    Issue between  suspend function and assertThrows https://github.com/junit-team/junit5/pull/1853
 //    @DisplayName("Given I'm a user\n"+
