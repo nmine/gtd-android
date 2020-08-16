@@ -9,6 +9,8 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
 import be.nmine.gtd.StuffDTO
+import be.nmine.gtd.fragment.actions.ActionsFragment
+import be.nmine.gtd.fragment.inbox.InboxFragment
 
 class InboxListAdapter(private val context: FragmentActivity?, private val description: List<String>)
     : ArrayAdapter<String>(context!!, R.layout.inbox_list_view_items, description) {
@@ -31,13 +33,19 @@ class InboxListAdapter(private val context: FragmentActivity?, private val descr
         val three_dots = rowView.findViewById(R.id.three_dots) as AppCompatImageButton
 
         subtitleText.text = description[position]
-        three_dots.setOnClickListener {
-            val popup = PopupMenu(context, it)
+        three_dots.setOnClickListener { view ->
+            val popup = PopupMenu(context, view)
             popup.setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.menu__to_agenda -> {
+                    R.id.menu_to_action -> {
+                        val fragment = ActionsFragment()
+                        context!!.supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, fragment, fragment.javaClass.getSimpleName())
+                            .commit()
                         true
                     }
+                    R.id.menu_to_project -> true
                     else -> false
                 }
             }
