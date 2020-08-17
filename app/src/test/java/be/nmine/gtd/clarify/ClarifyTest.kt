@@ -17,7 +17,6 @@ import be.nmine.gtd.core.infrastructure.basket.BasketInMemory
 import be.nmine.gtd.core.infrastructure.project.ProjectRepositoryInmemory
 import be.nmine.gtd.core.infrastructure.trash.TrashRepositoryInmemory
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -26,10 +25,10 @@ import org.junit.jupiter.api.Test
 
 
 class ClarifyTest {
-    val basket: Basket = BasketInMemory()
-    val actionRepository: ActionRepository = ActionRepositoryInMemory()
-    val trashRepository: TrashRepository = TrashRepositoryInmemory()
-    val projectRepository: ProjectRepository = ProjectRepositoryInmemory()
+    private val basket: Basket = BasketInMemory()
+    private val actionRepository: ActionRepository = ActionRepositoryInMemory()
+    private val trashRepository: TrashRepository = TrashRepositoryInmemory()
+    private val projectRepository: ProjectRepository = ProjectRepositoryInmemory()
 
 
     @DisplayName(
@@ -52,9 +51,7 @@ class ClarifyTest {
             )
         )
         //Then
-        basket.getAll().collect { stuffs: List<Stuff?> ->
-            assertTrue(stuffs.isEmpty())
-        }
+        AssertThatBasketIsEmpty()
         assertEquals(trashRepository.getStuff(stuff.name).name, stuff.name)
     }
 
@@ -78,9 +75,7 @@ class ClarifyTest {
             )
         )
         //Then
-        basket.getAll().collect { stuffs: List<Stuff?> ->
-            assertTrue(stuffs.isEmpty())
-        }
+        AssertThatBasketIsEmpty()
         assertEquals(actionRepository.getAction(stuff.name).name, stuff.name)
     }
 
@@ -103,10 +98,14 @@ class ClarifyTest {
             )
         )
         //Then
+        AssertThatBasketIsEmpty()
+        assertEquals(projectRepository.getProject(projectName).name, projectName)
+    }
+
+    private suspend fun AssertThatBasketIsEmpty() {
         basket.getAll().collect { stuffs: List<Stuff?> ->
             assertTrue(stuffs.isEmpty())
         }
-        assertEquals(projectRepository.getProject(projectName).name, projectName)
     }
 
     private suspend fun addOneStuffInBasket(stuffName: String): Stuff {

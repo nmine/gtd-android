@@ -12,9 +12,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import be.nmine.gtd.R
 import be.nmine.gtd.StuffDTO
-import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.fragment.inbox.listView.InboxListAdapter
-import be.nmine.gtd.fragment.inbox.viewModel.AllStuffViewModel
+import be.nmine.gtd.fragment.inbox.viewModel.InboxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.inbox_fragment_list_view.*
 
@@ -22,7 +21,7 @@ import kotlinx.android.synthetic.main.inbox_fragment_list_view.*
 @AndroidEntryPoint
 class InboxFragment : Fragment() {
 
-    private val getAllStuffViewModel: AllStuffViewModel by viewModels()
+    private val inboxViewModel: InboxViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +31,7 @@ class InboxFragment : Fragment() {
         inflater.inflate(R.layout.inbox_fragment_list_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val stuffsNamesLiveData: LiveData<List<String>> = getAllStuffViewModel
+        val stuffsNamesLiveData: LiveData<List<String>> = inboxViewModel
             .flow
             .asLiveData()
             .map { list: List<StuffDTO?> -> list.map { stuffDTO -> stuffDTO!!.name } }

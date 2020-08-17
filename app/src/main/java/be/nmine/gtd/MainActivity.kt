@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import be.nmine.gtd.core.domain.stuff.Stuff
 import be.nmine.gtd.fragment.actions.ActionsFragment
 import be.nmine.gtd.fragment.inbox.InboxFragment
-import be.nmine.gtd.fragment.inbox.viewModel.SaveStuffViewModel
+import be.nmine.gtd.fragment.inbox.viewModel.InboxViewModel
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     var inputField: String = ""
 
-    private val viewModel: SaveStuffViewModel by viewModels()
+    private val viewModel: InboxViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
