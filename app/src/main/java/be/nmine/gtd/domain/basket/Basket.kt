@@ -1,6 +1,5 @@
 package be.nmine.gtd.domain.basket
 
-import be.nmine.gtd.domain.stuff.Stuff
 import kotlinx.coroutines.flow.Flow
 
 interface Basket {

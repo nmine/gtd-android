@@ -8,19 +8,18 @@ import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.trash.TrashRepository
 
 class ClarifyStuffHandler(
-    val basket: Basket,
-    val actionRepository: ActionRepository,
-    val trashRepository: TrashRepository
+    private val basket: Basket,
+    private val actionRepository: ActionRepository,
+    private val trashRepository: TrashRepository
 ) {
 
 
     fun handle(command: ClarifyStuffCommand) {
-        when(command){
-            is ClarifyStuffToActionCommand -> actionRepository.saveAction(
-                Action(
-                    command.stuff.name
-                )
-            )
+        when (command) {
+            is ClarifyStuffToActionCommand -> {
+                actionRepository.saveAction(Action(command.stuff.name))
+                basket.remove(command.stuff)
+            }
             is ClarifyStuffToMoveToTrash -> trashRepository.addStuff(command.stuff)
         }
         basket.remove(command.stuff)

@@ -7,11 +7,7 @@ class CreateProjectHandler(val projectRepository: ProjectRepository) {
 
 
     fun handle(command: CreateProjectCommand) {
-        projectRepository.addProject(
-            Project(
-                command.name
-            )
-        )
+        projectRepository.addProject(Project(command.name))
     }
 
 }

@@ -4,7 +4,7 @@ import be.nmine.gtd.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.domain.basket.Basket
-import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.infrastructure.basket.BasketInMemory
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect

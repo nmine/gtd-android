@@ -1,7 +1,7 @@
 package be.nmine.gtd.infrastructure.basket
 
 import be.nmine.gtd.domain.basket.Basket
-import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

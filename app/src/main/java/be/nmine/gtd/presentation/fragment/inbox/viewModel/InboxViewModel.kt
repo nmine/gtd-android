@@ -9,7 +9,7 @@ import be.nmine.gtd.presentation.fragment.inbox.StuffDTO
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
-import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

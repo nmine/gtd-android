@@ -19,6 +19,7 @@ package be.nmine.gtd.di
 import android.content.Context
 import androidx.room.Room
 import be.nmine.gtd.infrastructure.ApplicationDatabase
+import be.nmine.gtd.infrastructure.action.ActionRoomDao
 import be.nmine.gtd.infrastructure.basket.BasketRoomDao
 import dagger.Module
 import dagger.Provides
@@ -38,11 +39,17 @@ object DatabaseModule {
             appContext,
             ApplicationDatabase::class.java,
             "gtd.db"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
-    fun provideLogDao(database: ApplicationDatabase): BasketRoomDao {
+    fun provideBasketDao(database: ApplicationDatabase): BasketRoomDao {
         return database.stuffDao()
+    }
+
+    @Provides
+    fun provideActionDao(database: ApplicationDatabase): ActionRoomDao {
+        return database.actionDao()
     }
 }

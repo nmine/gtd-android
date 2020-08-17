@@ -1,4 +1,4 @@
-package be.nmine.gtd.presentation.fragment.inbox.listView
+package be.nmine.gtd.presentation.fragment.actions.listView
 
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +10,12 @@ import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
 
-class InboxListAdapter(private val context: FragmentActivity?, private val description: List<String>)
-    : ArrayAdapter<String>(context!!, R.layout.inbox_list_view_items, description) {
+class ActionListAdapter(private val context: FragmentActivity?, private val description: List<String>)
+    : ArrayAdapter<String>(context!!, R.layout.action_list_view_items, description) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context!!.layoutInflater
-        val rowView = inflater.inflate(R.layout.inbox_list_view_items, null, true)
+        val rowView = inflater.inflate(R.layout.action_list_view_items, null, true)
 
         val subtitleText = rowView.findViewById(R.id.description) as TextView
         initThreeDotsMenu(rowView, subtitleText, position)

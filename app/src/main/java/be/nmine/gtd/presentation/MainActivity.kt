@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import be.nmine.gtd.R
-import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
 import be.nmine.gtd.presentation.fragment.inbox.InboxFragment
 import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel

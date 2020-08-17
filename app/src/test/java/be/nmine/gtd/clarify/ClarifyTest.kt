@@ -2,7 +2,6 @@ package be.nmine.gtd.clarify
 
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
-import be.nmine.gtd.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.application.clarify.project.CreateProjectCommand
 import be.nmine.gtd.application.clarify.project.CreateProjectHandler
@@ -10,7 +9,7 @@ import be.nmine.gtd.application.clarify.trash.ClarifyStuffToMoveToTrash
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.project.ProjectRepository
-import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.domain.trash.TrashRepository
 import be.nmine.gtd.infrastructure.action.ActionRepositoryInMemory
 import be.nmine.gtd.infrastructure.basket.BasketInMemory
