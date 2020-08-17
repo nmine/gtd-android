@@ -1,16 +1,13 @@
 package be.nmine.gtd.capture
 
-import be.nmine.gtd.StuffDTO
-import be.nmine.gtd.clarify.ClarifyTest
-import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffCommand
-import be.nmine.gtd.core.application.capture.captureStuff.CaptureStuffHandler
-import be.nmine.gtd.core.application.capture.getAllStuffs.GetAllStuffHandler
-import be.nmine.gtd.core.domain.basket.Basket
-import be.nmine.gtd.core.domain.stuff.Stuff
-import be.nmine.gtd.core.infrastructure.basket.BasketInMemory
+import be.nmine.gtd.application.capture.captureStuff.CaptureStuffCommand
+import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
+import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
+import be.nmine.gtd.domain.basket.Basket
+import be.nmine.gtd.domain.stuff.Stuff
+import be.nmine.gtd.infrastructure.basket.BasketInMemory
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName

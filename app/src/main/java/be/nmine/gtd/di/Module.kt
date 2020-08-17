@@ -1,7 +1,7 @@
 package be.nmine.gtd.di
 
-import be.nmine.gtd.core.domain.basket.Basket
-import be.nmine.gtd.core.infrastructure.basket.BasketRoom
+import be.nmine.gtd.domain.basket.Basket
+import be.nmine.gtd.infrastructure.basket.BasketRoom
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

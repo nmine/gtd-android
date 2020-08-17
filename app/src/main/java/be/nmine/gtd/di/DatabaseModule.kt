@@ -18,8 +18,8 @@ package be.nmine.gtd.di
 
 import android.content.Context
 import androidx.room.Room
-import be.nmine.gtd.core.infrastructure.ApplicationDatabase
-import be.nmine.gtd.core.infrastructure.basket.BasketRoomDao
+import be.nmine.gtd.infrastructure.ApplicationDatabase
+import be.nmine.gtd.infrastructure.basket.BasketRoomDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
