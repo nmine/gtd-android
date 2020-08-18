@@ -36,8 +36,8 @@ class CaptureTest {
         assertEquals(basket.getStuff(stuffName).name, stuffName)
     }
 
-    @InternalCoroutinesApi
     @Test
+    @InternalCoroutinesApi
     fun `can get all stuffs`() = runBlocking {
         //Given
         val stuffName = "Appeller Christelle"

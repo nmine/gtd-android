@@ -23,9 +23,6 @@ import be.nmine.gtd.infrastructure.action.ActionRoomDao
 import be.nmine.gtd.infrastructure.basket.BasketRoomDao
 import be.nmine.gtd.infrastructure.basket.StuffRoom
 
-/**
- * SQLite Database for storing the logs.
- */
 @Database(entities = [StuffRoom::class, ActionRoom::class], version = 2, exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun stuffDao(): BasketRoomDao

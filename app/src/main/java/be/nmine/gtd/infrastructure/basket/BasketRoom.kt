@@ -10,7 +10,7 @@ class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao) :
 
     override suspend fun saveStuff(stuff: Stuff) {
         var stuff = StuffRoom(name = "toto")
-        basketRoomDao.insertAll(stuff)
+        basketRoomDao.save(stuff)
     }
 
     override fun getStuff(stuff: String): Stuff {

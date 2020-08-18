@@ -11,7 +11,7 @@ interface BasketRoomDao {
     fun getAll(): Flow<List<StuffRoom>>
 
     @Insert
-    suspend fun insertAll(stuffRoom: StuffRoom)
+    suspend fun save(stuffRoom: StuffRoom)
 
     @Query("DELETE FROM stuffs WHERE name = :name")
     fun delete(name:String)
