@@ -8,7 +8,7 @@ class ActionRepositoryInMemory : ActionRepository {
 
     val actions : MutableList<Action> = mutableListOf()
 
-    override fun saveAction(action: Action) {
+    override suspend fun saveAction(action: Action) {
        actions.add(action)
     }
 

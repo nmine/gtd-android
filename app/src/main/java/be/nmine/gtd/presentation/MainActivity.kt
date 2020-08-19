@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             val dialog: MaterialDialog = MaterialDialog(this).show {
                 input { dialog, text ->
                     inputField = dialog.getInputField().text.toString()
-                    viewModel.saveStuff(Stuff(name = inputField))
+                    viewModel.captureStuff(Stuff(name = inputField))
                 }
                 positiveButton(R.string.app_name)
             }

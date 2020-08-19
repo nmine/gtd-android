@@ -8,9 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
+import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
+import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
 
-class InboxListAdapter(private val context: FragmentActivity?, private val description: List<String>)
+class InboxListAdapter(
+    private val context: FragmentActivity?,
+    private val description: List<String>,
+    private val inboxViewModel: InboxViewModel
+)
     : ArrayAdapter<String>(context!!, R.layout.inbox_list_view_items, description) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
@@ -36,6 +42,7 @@ class InboxListAdapter(private val context: FragmentActivity?, private val descr
             popup.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.menu_to_action -> {
+                        inboxViewModel.clarifyStuffToAction(Stuff(description[position]))
                         val fragment = ActionsFragment()
                         context!!.supportFragmentManager
                             .beginTransaction()

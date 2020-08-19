@@ -9,7 +9,7 @@ import javax.inject.Inject
 class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao) : Basket {
 
     override suspend fun saveStuff(stuff: Stuff) {
-        var stuff = StuffRoom(name = "toto")
+        var stuff = StuffRoom(name = stuff.name)
         basketRoomDao.save(stuff)
     }
 
@@ -25,7 +25,7 @@ class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao) :
         }
     }
 
-    override fun remove(stuff: Stuff) {
+    override suspend fun remove(stuff: Stuff) {
         basketRoomDao.delete(stuff.name)
     }
 

@@ -3,7 +3,6 @@ package be.nmine.gtd.di
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.infrastructure.action.ActionRepositoryRoom
-import be.nmine.gtd.infrastructure.action.ActionRoomDao
 import be.nmine.gtd.infrastructure.basket.BasketRoom
 import dagger.Binds
 import dagger.Module
@@ -23,5 +22,6 @@ abstract class Module {
     @Binds
     @Singleton
     abstract fun bindActionRepository(impl: ActionRepositoryRoom): ActionRepository
+
 
 }

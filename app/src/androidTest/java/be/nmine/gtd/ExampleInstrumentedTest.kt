@@ -1,12 +1,14 @@
 package be.nmine.gtd
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.platform.app.InstrumentationRegistry
+import be.nmine.gtd.infrastructure.basket.BasketRoomDao
+import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,6 +17,17 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+    private lateinit var basketRoomDao: BasketRoomDao
+    private lateinit var database: ApplicationTestDatabase
+
+    @Before
+    fun createDb() {
+        database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(), ApplicationTestDatabase::class.java
+        ).build()
+        basketRoomDao = database.basketRoomDao()
+    }
+
     @Test
     fun useAppContext() {
         // Context of the app under test.

@@ -35,7 +35,7 @@ class InboxFragment : Fragment() {
             .asLiveData()
             .map { list: List<StuffDTO?> -> list.map { stuffDTO -> stuffDTO!!.name } }
         stuffsNamesLiveData.observe(viewLifecycleOwner, Observer { names: List<String> ->
-            recipe_list_view.adapter = InboxListAdapter(activity, names)
+            recipe_list_view.adapter = InboxListAdapter(activity, names,inboxViewModel)
         })
     }
 }

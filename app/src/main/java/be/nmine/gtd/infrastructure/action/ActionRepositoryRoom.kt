@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class ActionRepositoryRoom @Inject constructor(private val actionRoomDao: ActionRoomDao) : ActionRepository {
 
-    override fun saveAction(action: Action) {
-        actionRoomDao.insertAll(ActionRoom(name = action.name))
+    override suspend fun saveAction(action: Action) {
+        actionRoomDao.save(ActionRoom(name = action.name))
     }
 
     override fun getAction(name: String): Action {
