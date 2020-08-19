@@ -20,4 +20,8 @@ class ActionRepositoryInMemory : ActionRepository {
         TODO("Not yet implemented")
     }
 
+    override suspend fun remove(action: Action) {
+        actions.remove(action)
+    }
+
 }

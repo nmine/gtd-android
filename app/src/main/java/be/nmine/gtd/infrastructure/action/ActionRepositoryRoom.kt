@@ -24,5 +24,9 @@ class ActionRepositoryRoom @Inject constructor(private val actionRoomDao: Action
         }
     }
 
+    override suspend fun remove(action: Action) {
+        actionRoomDao.delete(action.name)
+    }
+
 
 }

@@ -8,9 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
+import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
+import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 
-class ActionListAdapter(private val context: FragmentActivity?, private val description: List<String>)
+class ActionListAdapter(
+    private val context: FragmentActivity?,
+    private val description: List<String>,
+    private val actionViewModel: ActionViewModel
+)
     : ArrayAdapter<String>(context!!, R.layout.action_list_view_items, description) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
@@ -35,19 +41,15 @@ class ActionListAdapter(private val context: FragmentActivity?, private val desc
             val popup = PopupMenu(context, view)
             popup.setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.menu_to_action -> {
+                    R.id.menu_delete -> {
                         val fragment = ActionsFragment()
-                        context!!.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, fragment, fragment.javaClass.simpleName)
-                            .commit()
+                        actionViewModel.deleteAction(Action(description[position]))
                         true
                     }
-                    R.id.menu_to_project -> true
                     else -> false
                 }
             }
-            popup.inflate(R.menu.inbox_menu_pop_up_action_list)
+            popup.inflate(R.menu.action_menu_pop_up_action_list)
             popup.show()
         }
     }

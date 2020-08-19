@@ -27,7 +27,7 @@ class ActionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         actionViewModel.actionNamesLiveData.observe(viewLifecycleOwner, Observer { names: List<String> ->
-            recipe_list_view.adapter = ActionListAdapter(activity, names)
+            recipe_list_view.adapter = ActionListAdapter(activity, names,actionViewModel)
         })
     }
 

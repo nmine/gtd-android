@@ -22,4 +22,8 @@ class ActionViewModel @ViewModelInject constructor(
     fun saveAction(action: Action) = viewModelScope.launch {
         actionRepository.saveAction(action)
     }
+
+    fun deleteAction(action: Action) = viewModelScope.launch {
+        actionRepository.remove(action)
+    }
 }

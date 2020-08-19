@@ -7,8 +7,6 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -16,13 +14,12 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.doReturn
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class InboxViewModelTest {
+class ActionViewModelTest {
 
     @get:Rule
     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
@@ -42,23 +39,15 @@ class InboxViewModelTest {
     }
 
     @Test
-    fun viewModel_should_return_live_data_with_correct_value() {
+    fun delete_action_call_on_viewModel_should_call_delete_actions_on_repository() {
         val action =  Action("test")
         testCoroutineRule.runBlockingTest {
             //Given
-            var flow: Flow<MutableList<Action?>> =
-                flowOf(
-                    mutableListOf<Action?>(action))
-            doReturn(flow)
-                .`when`(actionRepository)
-                .getAll()
             val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
             //When
-            viewModel.actionNamesLiveData.observeForever(observer)
+            viewModel.deleteAction(action)
             //Then
-            verify(actionRepository).getAll()
-            verify(observer).onChanged(mutableListOf("test"))
-            viewModel.actionNamesLiveData.removeObserver(observer)
+            verify(actionRepository).remove(action)
         }
     }
 
