@@ -74,7 +74,7 @@ class ClarifyTest {
             )
         )
         //Then
-        AssertThatBasketIsEmpty()
+        assertThatBasketIsEmpty()
         assertEquals(actionRepository.getAction(stuff.name).name, stuff.name)
     }
 
@@ -97,11 +97,11 @@ class ClarifyTest {
             )
         )
         //Then
-        AssertThatBasketIsEmpty()
+        assertThatBasketIsEmpty()
         assertEquals(projectRepository.getProject(projectName).name, projectName)
     }
 
-    private suspend fun AssertThatBasketIsEmpty() {
+    private suspend fun assertThatBasketIsEmpty() {
         basket.getAll().collect { stuffs: List<Stuff?> ->
             assertTrue(stuffs.isEmpty())
         }

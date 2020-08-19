@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test
 
 
 class CaptureTest {
-    val basket: Basket = BasketInMemory()
+    private val basket: Basket = BasketInMemory()
 
     @DisplayName(
         "Given I'm a user\n" +
