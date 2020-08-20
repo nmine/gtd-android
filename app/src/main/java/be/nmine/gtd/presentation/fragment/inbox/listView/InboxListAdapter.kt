@@ -45,6 +45,10 @@ class InboxListAdapter(
                         true
                     }
                     R.id.menu_to_project -> true
+                    R.id.menu_archive -> {
+                        inboxViewModel.clarifyStuffToTrash(Stuff(description[position]))
+                        true
+                    }
                     else -> false
                 }
             }

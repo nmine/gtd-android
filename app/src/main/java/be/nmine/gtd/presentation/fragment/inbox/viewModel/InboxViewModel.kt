@@ -37,7 +37,7 @@ class InboxViewModel @ViewModelInject constructor(
         clarifyStuffHandler.handle(ClarifyStuffToActionCommand(stuff))
     }
 
-    suspend fun clarifyStuffToTrash(stuff: Stuff) = viewModelScope.launch {
+    fun clarifyStuffToTrash(stuff: Stuff) = viewModelScope.launch {
         clarifyStuffHandler.handle(ClarifyStuffToMoveToTrash(stuff))
     }
 }
