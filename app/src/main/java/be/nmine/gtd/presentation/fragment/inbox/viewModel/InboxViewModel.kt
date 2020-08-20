@@ -8,6 +8,7 @@ import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
+import be.nmine.gtd.application.clarify.trash.ClarifyStuffToMoveToTrash
 import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -34,5 +35,9 @@ class InboxViewModel @ViewModelInject constructor(
 
     fun clarifyStuffToAction(stuff: Stuff) = viewModelScope.launch {
         clarifyStuffHandler.handle(ClarifyStuffToActionCommand(stuff))
+    }
+
+    suspend fun clarifyStuffToTrash(stuff: Stuff) = viewModelScope.launch {
+        clarifyStuffHandler.handle(ClarifyStuffToMoveToTrash(stuff))
     }
 }

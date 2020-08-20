@@ -7,6 +7,8 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -14,6 +16,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -48,6 +51,27 @@ class ActionViewModelTest {
             viewModel.deleteAction(action)
             //Then
             verify(actionRepository).remove(action)
+        }
+    }
+
+    @Test
+    fun viewModel_should_return_live_data_with_correct_value() {
+        val action =  Action("test")
+        testCoroutineRule.runBlockingTest {
+            //Given
+            var flow: Flow<MutableList<Action?>> =
+                flowOf(
+                    mutableListOf<Action?>(action))
+            Mockito.doReturn(flow)
+                .`when`(actionRepository)
+                .getAll()
+            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            //When
+            viewModel.actionNamesLiveData.observeForever(observer)
+            //Then
+            verify(actionRepository).getAll()
+            verify(observer).onChanged(mutableListOf("test"))
+            viewModel.actionNamesLiveData.removeObserver(observer)
         }
     }
 

@@ -1,22 +1,24 @@
 package be.nmine.gtd.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
-import be.nmine.gtd.domain.action.Action
+import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
+import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
+import be.nmine.gtd.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.domain.action.ActionRepository
-import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
+import be.nmine.gtd.domain.basket.Basket
+import be.nmine.gtd.domain.basket.Stuff
+import be.nmine.gtd.domain.trash.TrashRepository
+import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito.doReturn
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -31,35 +33,47 @@ class InboxViewModelTest {
     val testCoroutineRule = TestCoroutineRule()
 
     @Mock
-    private lateinit var actionRepository: ActionRepository
+    private lateinit var basket: Basket
 
     @Mock
-    private lateinit var observer: Observer<List<String?>>
+    private lateinit var trashRepository: TrashRepository
+
+    @Mock
+    private lateinit var actionRepository: ActionRepository
+
+    @InjectMocks
+    private lateinit var getAllStuffHandler: GetAllStuffHandler
+
+    @InjectMocks
+    private lateinit var captureStuffHandler: CaptureStuffHandler
+
+    @InjectMocks
+    private lateinit var clarifyStuffHandler: ClarifyStuffHandler
 
     @Before
     fun setUp() {
         // do something if required
     }
 
+
     @Test
     fun viewModel_should_return_live_data_with_correct_value() {
-        val action =  Action("test")
+        val stuff =  Stuff("test")
         testCoroutineRule.runBlockingTest {
-            //Given
-            var flow: Flow<MutableList<Action?>> =
-                flowOf(
-                    mutableListOf<Action?>(action))
-            doReturn(flow)
-                .`when`(actionRepository)
-                .getAll()
-            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            val viewModel = getInboxViewModel()
             //When
-            viewModel.actionNamesLiveData.observeForever(observer)
+            viewModel.clarifyStuffToTrash(stuff)
             //Then
-            verify(actionRepository).getAll()
-            verify(observer).onChanged(mutableListOf("test"))
-            viewModel.actionNamesLiveData.removeObserver(observer)
+            verify(trashRepository).addStuff(stuff)
         }
+    }
+
+    private fun getInboxViewModel(): InboxViewModel {
+        return InboxViewModel(
+            getAllStuffHandler,
+            captureStuffHandler,
+            clarifyStuffHandler,
+            SavedStateHandle())
     }
 
     @After
