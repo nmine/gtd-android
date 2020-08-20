@@ -6,6 +6,7 @@ import be.nmine.gtd.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.application.clarify.project.CreateProjectCommand
 import be.nmine.gtd.application.clarify.project.CreateProjectHandler
+import be.nmine.gtd.application.clarify.trash.ClarifyStuffToMoveToTrash
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
@@ -30,29 +31,31 @@ class ClarifyTest {
     private val projectRepository: ProjectRepository = ProjectRepositoryInmemory()
 
 
-//    @DisplayName(
-//        """Given one stuff with name 'Faire des pompages tout les jours' is in the basket
-//            When I clarify this Stuff
-//            Then the stuff is moved to the Trash"""
-//    )
-//    @Test
-//    fun `can clarify a stuff to move to trash`() = runBlocking {
-//        //Given
-//        val stuff = addOneStuffInBasket("Appeller Christelle")
-//        //When
-//        ClarifyStuffHandler(
-//            basket,
-//            actionRepository
-////            trashRepository
-//        ).handle(
-//            ClarifyStuffToMoveToTrash(
-//                stuff
-//            )
-//        )
-//        //Then
-//        AssertThatBasketIsEmpty()
-//        assertEquals(trashRepository.getStuff(stuff.name).name, stuff.name)
-//    }
+    @DisplayName(
+        """Given one stuff with name 'Faire des pompages tout les jours' is in the basket
+            When I clarify this Stuff
+            Then the stuff is moved to the Trash"""
+    )
+    @Test
+    fun `can clarify a stuff to move to trash`() = runBlocking {
+        //Given
+        val stuff = addOneStuffInBasket("Appeller Christelle")
+        //When
+        ClarifyStuffHandler(
+            basket,
+            actionRepository,
+            trashRepository
+        ).handle(
+            ClarifyStuffToMoveToTrash(
+                stuff
+            )
+        )
+        //Then
+        assertThatBasketIsEmpty()
+        val first = (trashRepository as TrashRepositoryInmemory).trash
+            .first { stuffInTrash -> stuffInTrash.name === stuff.name }
+        assertEquals(first.name, stuff.name)
+    }
 
     @Test
     @DisplayName(
@@ -66,8 +69,8 @@ class ClarifyTest {
         //When
         ClarifyStuffHandler(
             basket,
-            actionRepository
-//            trashRepository
+            actionRepository,
+            trashRepository
         ).handle(
             ClarifyStuffToActionCommand(
                 stuff

@@ -7,11 +7,7 @@ class TrashRepositoryInmemory: TrashRepository {
 
     val trash : MutableList<Stuff> = mutableListOf()
 
-    override fun getStuff(name: String): Stuff {
-        return trash.filter { stuff -> stuff.name == name }.first()
-    }
-
-    override fun addStuff(stuff: Stuff) {
+    override suspend fun addStuff(stuff: Stuff) {
         trash.add(stuff)
     }
 }

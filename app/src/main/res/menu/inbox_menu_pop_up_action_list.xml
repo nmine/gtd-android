@@ -8,5 +8,9 @@
         android:id="@+id/menu_to_project"
         android:icon="@drawable/ic_baseline_inbox_24"
         android:title="Create a project" />
+    <item
+        android:id="@+id/menu_archive"
+        android:icon="@drawable/ic_baseline_inbox_24"
+        android:title="Trash" />
 
 </menu>

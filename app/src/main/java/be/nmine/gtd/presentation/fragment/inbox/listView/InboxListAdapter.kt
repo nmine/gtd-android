@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
 import be.nmine.gtd.domain.basket.Stuff
-import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
 import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
 
 class InboxListAdapter(
@@ -43,11 +42,6 @@ class InboxListAdapter(
                 when (it.itemId) {
                     R.id.menu_to_action -> {
                         inboxViewModel.clarifyStuffToAction(Stuff(description[position]))
-                        val fragment = ActionsFragment()
-                        context!!.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, fragment, fragment.javaClass.simpleName)
-                            .commit()
                         true
                     }
                     R.id.menu_to_project -> true
