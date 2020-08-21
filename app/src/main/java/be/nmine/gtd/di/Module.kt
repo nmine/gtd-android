@@ -29,5 +29,4 @@ abstract class Module {
     @Singleton
     abstract fun bindTrashRepository(impl: TrashRepositoryRoom): TrashRepository
 
-
 }

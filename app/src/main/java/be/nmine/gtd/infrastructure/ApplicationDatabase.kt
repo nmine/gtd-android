@@ -21,13 +21,17 @@ import androidx.room.RoomDatabase
 import be.nmine.gtd.infrastructure.action.ActionRoom
 import be.nmine.gtd.infrastructure.action.ActionRoomDao
 import be.nmine.gtd.infrastructure.basket.BasketRoomDao
+import be.nmine.gtd.infrastructure.basket.InboxZeroRepositoryRoom
+import be.nmine.gtd.infrastructure.basket.InboxZeroRoom
 import be.nmine.gtd.infrastructure.basket.StuffRoom
 import be.nmine.gtd.infrastructure.trash.TrashRoom
 import be.nmine.gtd.infrastructure.trash.TrashRoomDao
 
-@Database(entities = [StuffRoom::class, ActionRoom::class, TrashRoom::class], version = 3, exportSchema = false)
+@Database(entities = [StuffRoom::class, ActionRoom::class, TrashRoom::class,InboxZeroRoom::class],
+    version = 4, exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun stuffDao(): BasketRoomDao
     abstract fun actionDao(): ActionRoomDao
     abstract fun trashDao(): TrashRoomDao
+    abstract fun inboxZeroRoom(): InboxZeroRepositoryRoom
 }

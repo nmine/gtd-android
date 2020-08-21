@@ -6,6 +6,7 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.trash.TrashRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -17,10 +18,12 @@ class ClarifyStuffHandler @Inject constructor(
     suspend fun handle(command: ClarifyStuffCommand) {
         when (command) {
             is ClarifyStuffToActionCommand -> {
-                runBlocking {
+                val block: suspend CoroutineScope.() -> Unit = {
                     actionRepository.saveAction(Action(command.stuff.name))
                     basket.remove(command.stuff)
+                    basket.updateTimeSinceLastInboxZero()
                 }
+                runBlocking(block = block)
             }
             is ClarifyStuffToMoveToTrash -> trashRepository.addStuff(command.stuff)
         }

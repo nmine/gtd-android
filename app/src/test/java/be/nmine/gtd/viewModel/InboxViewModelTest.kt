@@ -11,6 +11,7 @@ import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.domain.trash.TrashRepository
 import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -57,6 +58,18 @@ class InboxViewModelTest {
 
 
     @Test
+    fun can_update_inboxZero() {
+        val stuff =  Stuff("test")
+        val suspendFunction1: suspend TestCoroutineScope.() -> Unit = {
+            val viewModel = getInboxViewModel()
+            //When
+            viewModel.getInboxZero()
+            //Then
+            verify(basket).getTimeSinceLastInboxZero()
+        }
+    }
+
+    @Test
     fun viewModel_should_return_live_data_with_correct_value() {
         val stuff =  Stuff("test")
         testCoroutineRule.runBlockingTest {
@@ -73,6 +86,7 @@ class InboxViewModelTest {
             getAllStuffHandler,
             captureStuffHandler,
             clarifyStuffHandler,
+            basket,
             SavedStateHandle())
     }
 

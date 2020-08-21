@@ -3,9 +3,15 @@ package be.nmine.gtd.capture
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffCommand
 import be.nmine.gtd.application.capture.captureStuff.CaptureStuffHandler
 import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
+import be.nmine.gtd.application.clarify.ClarifyStuffHandler
+import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
+import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
+import be.nmine.gtd.domain.trash.TrashRepository
+import be.nmine.gtd.infrastructure.action.ActionRepositoryInMemory
 import be.nmine.gtd.infrastructure.basket.BasketInMemory
+import be.nmine.gtd.infrastructure.trash.TrashRepositoryInmemory
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
@@ -16,6 +22,8 @@ import org.junit.jupiter.api.Test
 
 class CaptureTest {
     private val basket: Basket = BasketInMemory()
+    private val actionRepository: ActionRepository = ActionRepositoryInMemory()
+    private val trashRepository: TrashRepository = TrashRepositoryInmemory()
 
     @DisplayName(
         "Given I'm a user\n" +
@@ -24,35 +32,58 @@ class CaptureTest {
     )
     @Test
     fun `can create a valid stuff in basket`() = runBlocking {
-        val stuffName = "Appeller Christelle"
+        val stuff = Stuff("Appeller Christelle")
         CaptureStuffHandler(
             basket
         ).handle(
             CaptureStuffCommand(
-                Stuff(stuffName)
+                stuff
             )
         )
         //Then
-        assertEquals(basket.getStuff(stuffName).name, stuffName)
+        assertEquals(basket.getStuff(stuff.name).name, stuff.name)
+    }
+
+
+    @DisplayName(
+        "Given I'm a user\n" +
+                "When I go to the Inbox\n" +
+                "Then I should see how many time passes since the last Zero Inbox"
+    )
+    @Test
+    fun `inboxZero should be more recent after clarify last stuff to action`() = runBlocking {
+        //Given
+        //When
+        val stuff = Stuff("Appeller Christelle")
+        addOneStuffInBasket(stuff)
+        clarifyStuffToAction(stuff)
+        //Then
+    }
+
+    private suspend fun clarifyStuffToAction(stuff: Stuff) {
+        ClarifyStuffHandler(
+            basket,
+            actionRepository,
+            trashRepository
+        ).handle(ClarifyStuffToActionCommand(stuff))
     }
 
     @Test
     @InternalCoroutinesApi
     fun `can get all stuffs`() = runBlocking {
         //Given
-        val stuffName = "Appeller Christelle"
-        addOneStuffInBasket(stuffName)
+        val stuff = Stuff("Appeller Christelle")
+        addOneStuffInBasket(stuff)
         //When
         val flow = GetAllStuffHandler(basket)
             .handle()
         //Then
         flow.collect { value: List<Stuff?> ->
-            assertEquals(value[0]!!.name, stuffName)
+            assertEquals(value[0]!!.name, stuff.name)
         }
     }
 
-    private suspend fun addOneStuffInBasket(stuffName: String): Stuff {
-        val stuff = Stuff(stuffName)
+    private suspend fun addOneStuffInBasket(stuff: Stuff): Stuff {
         CaptureStuffHandler(
             basket
         ).handle(

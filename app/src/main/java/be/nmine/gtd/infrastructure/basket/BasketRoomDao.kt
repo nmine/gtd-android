@@ -15,4 +15,5 @@ interface BasketRoomDao {
 
     @Query("DELETE FROM stuffs WHERE name = :name")
     suspend fun delete(name:String)
+
 }

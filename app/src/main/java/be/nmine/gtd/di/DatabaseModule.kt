@@ -21,6 +21,7 @@ import androidx.room.Room
 import be.nmine.gtd.infrastructure.ApplicationDatabase
 import be.nmine.gtd.infrastructure.action.ActionRoomDao
 import be.nmine.gtd.infrastructure.basket.BasketRoomDao
+import be.nmine.gtd.infrastructure.basket.InboxZeroRepositoryRoom
 import be.nmine.gtd.infrastructure.trash.TrashRoomDao
 import dagger.Module
 import dagger.Provides
@@ -57,5 +58,10 @@ object DatabaseModule {
     @Provides
     fun provideTrashDao(database: ApplicationDatabase): TrashRoomDao {
         return database.trashDao()
+    }
+
+    @Provides
+    fun provideInboxZeroDao(database: ApplicationDatabase): InboxZeroRepositoryRoom {
+        return database.inboxZeroRoom()
     }
 }

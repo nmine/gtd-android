@@ -4,9 +4,10 @@ import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import java.time.LocalDateTime
 
 class BasketInMemory : Basket {
-
+    private var inboxZero:InboxZero = InboxZero(LocalDateTime.now())
     private var stuffs: MutableList<Stuff> = mutableListOf()
 
     override suspend fun saveStuff(stuff: Stuff) {
@@ -22,7 +23,17 @@ class BasketInMemory : Basket {
     }
 
     override suspend fun remove(stuff: Stuff) {
+        if(stuffs.size == 1)
+            updateTimeSinceLastInboxZero()
         stuffs.remove(stuff)
+    }
+
+    override suspend fun updateTimeSinceLastInboxZero() {
+        inboxZero.update()
+    }
+
+    override suspend fun getTimeSinceLastInboxZero(): InboxZero {
+        return inboxZero
     }
 
 }

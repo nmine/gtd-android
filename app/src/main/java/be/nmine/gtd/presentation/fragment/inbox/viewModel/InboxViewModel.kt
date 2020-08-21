@@ -9,6 +9,7 @@ import be.nmine.gtd.application.capture.getAllStuffs.GetAllStuffHandler
 import be.nmine.gtd.application.clarify.ClarifyStuffHandler
 import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.application.clarify.trash.ClarifyStuffToMoveToTrash
+import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ class InboxViewModel @ViewModelInject constructor(
     private val getAllStuffHandler: GetAllStuffHandler,
     private val captureStuffHandler: CaptureStuffHandler,
     private val clarifyStuffHandler: ClarifyStuffHandler,
+    private val basket: Basket,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -39,5 +41,9 @@ class InboxViewModel @ViewModelInject constructor(
 
     fun clarifyStuffToTrash(stuff: Stuff) = viewModelScope.launch {
         clarifyStuffHandler.handle(ClarifyStuffToMoveToTrash(stuff))
+    }
+
+    fun getInboxZero() = viewModelScope.launch {
+        basket.getTimeSinceLastInboxZero()
     }
 }
