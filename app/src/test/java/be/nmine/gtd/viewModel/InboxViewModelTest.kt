@@ -58,12 +58,12 @@ class InboxViewModelTest {
 
 
     @Test
-    fun can_update_inboxZero() {
+    fun can_get_inboxZero() {
         val stuff =  Stuff("test")
         val suspendFunction1: suspend TestCoroutineScope.() -> Unit = {
             val viewModel = getInboxViewModel()
             //When
-            viewModel.getInboxZero()
+            viewModel.inboxZero
             //Then
             verify(basket).getTimeSinceLastInboxZero()
         }

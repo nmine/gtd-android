@@ -1,26 +1,22 @@
 package be.nmine.gtd.infrastructure.basket
 
+import java.time.Duration
 import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
-class InboxZero(private var time: LocalDateTime) {
+class InboxZero(private var time: Duration) {
 
     fun update() {
-        time = LocalDateTime.now()
+        time = Duration.ofMillis( Instant.now().toEpochMilli() - time.toMillis())
     }
 
     fun timeStamp(): Long {
-        return time.atZone(ZoneOffset.UTC).toEpochSecond()
+        return time.toMillis()
     }
 
     companion object Factory {
         fun from(timestamp: Long): InboxZero {
             return InboxZero(
-                time = LocalDateTime.ofInstant(
-                    Instant.ofEpochMilli(timestamp),
-                    ZoneOffset.UTC
-                )
+                time = Duration.ofMillis(timestamp)
             )
         }
     }

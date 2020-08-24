@@ -27,8 +27,23 @@ class InboxFragment : Fragment() {
         inflater.inflate(R.layout.inbox_fragment_list_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        inboxViewModel.stuffTitlesLiveData.observe(viewLifecycleOwner, Observer { names: List<String> ->
-            recipe_list_view.adapter = InboxListAdapter(activity, names,inboxViewModel)
-        })
+        initListViewStuffs()
+        initZeroInboxText()
+    }
+
+    private fun initListViewStuffs() {
+        inboxViewModel.stuffTitlesLiveData.observe(
+            viewLifecycleOwner,
+            Observer { names: List<String> ->
+                recipe_list_view.adapter = InboxListAdapter(activity, names, inboxViewModel)
+            })
+    }
+
+    private fun initZeroInboxText() {
+        inboxViewModel.inboxZero.observe(
+            viewLifecycleOwner,
+            Observer { inboxZeroDTO: InboxZeroDTO ->
+                zeroInbox.text = StringBuilder().append(inboxZeroDTO.duration.toDays())
+            })
     }
 }

@@ -4,6 +4,8 @@ import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.time.Duration
+import java.time.Instant
 import java.time.LocalDateTime
 import javax.inject.Inject
 
@@ -31,12 +33,14 @@ class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao,
         basketRoomDao.delete(stuff.name)
     }
 
-    override suspend fun getTimeSinceLastInboxZero() : InboxZero{
-        val inboxZero = inboxZeroRepositoryRoom.getInboxZero("first")
-            .map{inboxZeroRoom ->
-                InboxZero.from(inboxZeroRoom.timestamp!!) }
-            .first()
-        return inboxZero
+    override suspend fun getTimeSinceLastInboxZero() : InboxZero {
+        inboxZeroRepositoryRoom.save(InboxZeroRoom(timestamp = Instant.now().toEpochMilli(), name = "default"))
+//        val inboxZero = inboxZeroRepositoryRoom.getInboxZero("first")
+//            .map{inboxZeroRoom ->
+//                InboxZero.from(inboxZeroRoom.timestamp!!) }
+//            .first()
+//        return inboxZero
+        return InboxZero(Duration.ofMillis(1000))
     }
 
     override suspend fun updateTimeSinceLastInboxZero() {

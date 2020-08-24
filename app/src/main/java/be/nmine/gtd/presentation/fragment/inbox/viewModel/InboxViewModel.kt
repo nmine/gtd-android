@@ -11,6 +11,7 @@ import be.nmine.gtd.application.clarify.action.ClarifyStuffToActionCommand
 import be.nmine.gtd.application.clarify.trash.ClarifyStuffToMoveToTrash
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
+import be.nmine.gtd.presentation.fragment.inbox.InboxZeroDTO
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -43,7 +44,7 @@ class InboxViewModel @ViewModelInject constructor(
         clarifyStuffHandler.handle(ClarifyStuffToMoveToTrash(stuff))
     }
 
-    fun getInboxZero() = viewModelScope.launch {
-        basket.getTimeSinceLastInboxZero()
+    val inboxZero: LiveData<InboxZeroDTO> = liveData {
+        InboxZeroDTO.from(basket.getTimeSinceLastInboxZero())
     }
 }
