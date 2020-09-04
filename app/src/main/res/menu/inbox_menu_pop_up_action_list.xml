@@ -3,19 +3,14 @@
     <item
         android:id="@+id/menu_to_action"
         android:icon="@drawable/ic_baseline_inbox_24"
-        android:title="Open" />
-    <item
-        android:id="@+id/menu__to_agenda"
-        android:icon="@drawable/ic_baseline_inbox_24"
-        android:title="Open" />
+        android:title="Move to Action" />
     <item
         android:id="@+id/menu_to_project"
         android:icon="@drawable/ic_baseline_inbox_24"
-        android:title="Open" />
-
+        android:title="Create a project" />
     <item
-        android:id="@+id/menu_create_project"
+        android:id="@+id/menu_archive"
         android:icon="@drawable/ic_baseline_inbox_24"
-        android:title="Open" />
+        android:title="Trash" />
 
 </menu>

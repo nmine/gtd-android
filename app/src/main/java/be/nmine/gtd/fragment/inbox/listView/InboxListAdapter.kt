@@ -24,7 +24,7 @@ class InboxListAdapter(private val context: FragmentActivity?, private val descr
             val popup = PopupMenu(context,it)
             popup.setOnMenuItemClickListener {
                 when(it.itemId){
-                    R.id.menu__to_agenda -> {
+                        R.id.menu_to_action -> {
                         true
                     }
                     else -> false
