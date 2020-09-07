@@ -3,6 +3,7 @@ package be.nmine.gtd.infrastructure.action
 import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class ActionRepositoryInMemory : ActionRepository {
 
@@ -17,7 +18,7 @@ class ActionRepositoryInMemory : ActionRepository {
     }
 
     override fun getAll(): Flow<List<Action?>> {
-        TODO("Not yet implemented")
+        return flowOf(actions)
     }
 
     override suspend fun remove(action: Action) {

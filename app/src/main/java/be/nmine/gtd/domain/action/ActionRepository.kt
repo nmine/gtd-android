@@ -8,5 +8,4 @@ interface ActionRepository {
     fun getAction(name: String): Action
     fun getAll(): Flow<List<Action?>>
     suspend fun remove(action: Action)
-
 }

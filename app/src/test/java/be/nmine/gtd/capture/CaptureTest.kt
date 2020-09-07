@@ -93,22 +93,4 @@ class CaptureTest {
         )
         return stuff
     }
-
-
-//    Issue between  suspend function and assertThrows https://github.com/junit-team/junit5/pull/1853
-//    @DisplayName("Given I'm a user\n"+
-//            "When I capture a rule without a name\n"+
-//            "Then The stuff is not present in the Basket\n")
-//    @Test
-//    suspend fun `should_not_be_possible_to_create_invalid_stuff_in_inbox`() {
-//        assertThrows(IllegalArgumentException::class.java) {
-//            CaptureStuffHandler(
-//                basket
-//            ).handle(
-//                CaptureStuffCommand(
-//                    Stuff("")
-//                )
-//            )
-//        }
-//    }
 }
