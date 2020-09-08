@@ -25,6 +25,7 @@ class ClarifyTest {
     private val actionRepository: ActionRepository = ActionRepositoryInMemory()
     private val trashRepository: TrashRepository = TrashRepositoryInmemory()
 
+
     @DisplayName(
         """Given one stuff with name 'Faire des pompages tout les jours' is in the basket
             When I clarify this Stuff
