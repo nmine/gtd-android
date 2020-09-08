@@ -1,4 +1,4 @@
-package be.nmine.gtd.presentation.fragment.nextactions.viewModel
+package be.nmine.gtd.presentation.fragment.nextactions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import be.nmine.gtd.R
-import be.nmine.gtd.presentation.fragment.nextactions.viewModel.listView.NextActionListAdapter
+import be.nmine.gtd.presentation.fragment.nextactions.listView.NextActionListAdapter
+import be.nmine.gtd.presentation.fragment.nextactions.viewModel.NextActionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.inbox_fragment_list_view.*
 

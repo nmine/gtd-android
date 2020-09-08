@@ -8,7 +8,7 @@ import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
 import be.nmine.gtd.presentation.fragment.inbox.InboxFragment
 import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
-import be.nmine.gtd.presentation.fragment.nextactions.viewModel.NextActionsFragment
+import be.nmine.gtd.presentation.fragment.nextactions.NextActionsFragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input

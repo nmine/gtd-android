@@ -1,5 +1,7 @@
 package be.nmine.gtd.presentation.fragment.actions.listView
 
+import android.content.ContentValues.TAG
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -9,7 +11,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
 import be.nmine.gtd.domain.action.Action
-import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
+import be.nmine.gtd.presentation.fragment.actions.dialog.DialogNewNextActionFragment
 import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 
 class ActionListAdapter(
@@ -42,12 +44,21 @@ class ActionListAdapter(
             popup.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.menu_delete -> {
-                        val fragment = ActionsFragment()
-                        actionViewModel.deleteAction(Action(description[position]))
+                        if (context != null) {
+                            val dialogNewNextActionFragment = DialogNewNextActionFragment()
+                            val bundle = Bundle()
+                            bundle.putString("title", description[position] )
+                            dialogNewNextActionFragment.arguments = bundle
+                            dialogNewNextActionFragment.show(context.supportFragmentManager, TAG)
+                        }
+
+//                        MaterialAlertDialogBuilder(context)
+                            // Add customization options here
+//                            .show()
+//                        actionViewModel.deleteAction(Action(description[position]))
                         true
                     }
                     R.id.menu_move_to_next_action -> {
-                        val fragment = ActionsFragment()
                         actionViewModel.moveToNextAction(Action(description[position]))
                         true
                     }

@@ -1,4 +1,4 @@
-package be.nmine.gtd.presentation.fragment.nextactions.viewModel.listView
+package be.nmine.gtd.presentation.fragment.nextactions.listView
 
 import android.view.View
 import android.view.ViewGroup
