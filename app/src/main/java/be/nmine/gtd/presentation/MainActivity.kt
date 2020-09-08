@@ -8,6 +8,7 @@ import be.nmine.gtd.domain.basket.Stuff
 import be.nmine.gtd.presentation.fragment.actions.ActionsFragment
 import be.nmine.gtd.presentation.fragment.inbox.InboxFragment
 import be.nmine.gtd.presentation.fragment.inbox.viewModel.InboxViewModel
+import be.nmine.gtd.presentation.fragment.nextactions.viewModel.NextActionsFragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
@@ -57,6 +58,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_actions -> {
                 val fragment = ActionsFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment, fragment.javaClass.getSimpleName())
+                    .commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_next_actions -> {
+                val fragment = NextActionsFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment, fragment.javaClass.getSimpleName())
                     .commit()
                 return@OnNavigationItemSelectedListener true

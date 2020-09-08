@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 interface NextActionRepository {
     fun getAll(): Flow<List<NextAction?>>
     fun getNextAction(name: String): NextAction
-    fun save(nextAction: NextAction)
+    suspend fun save(nextAction: NextAction)
 }

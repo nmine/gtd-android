@@ -25,9 +25,6 @@
         android:layout_marginRight="22dp"
         app:rippleColor="@color/colorPrimary"/>
 
-
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"

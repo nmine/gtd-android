@@ -8,6 +8,7 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
+import be.nmine.gtd.domain.nextaction.NextAction
 import be.nmine.gtd.domain.nextaction.NextActionRepository
 import be.nmine.gtd.domain.project.ProjectRepository
 import be.nmine.gtd.infrastructure.action.ActionRepositoryInMemory
@@ -15,6 +16,7 @@ import be.nmine.gtd.infrastructure.basket.BasketInMemory
 import be.nmine.gtd.infrastructure.nextAction.NextActionRepositoryInMemory
 import be.nmine.gtd.infrastructure.project.ProjectRepositoryInmemory
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -76,6 +78,24 @@ class OrganiseTest {
         //Then
         assertThatActionItemsIsEmpty()
         assertEquals(nextActionRepository.getNextAction(action.name).name, action.name)
+    }
+
+    @Test
+    fun `can get all nextAction`() = runBlocking {
+        //Given
+        val nextAction = NextAction("Application GTD")
+        CreateNextActionsHandler(
+            nextActionRepository,
+            actionRepository
+        ).handle(
+            CreateNextActionCommand(
+                nextAction.name
+            )
+        )
+        //When
+        val allNextACtions = nextActionRepository.getAll()
+        //Then
+        assertEquals(allNextACtions.first().get(0)?.name, nextAction.name)
     }
 
     private suspend fun assertThatActionItemsIsEmpty() {

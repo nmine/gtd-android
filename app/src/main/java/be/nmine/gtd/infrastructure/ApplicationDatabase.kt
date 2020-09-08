@@ -24,14 +24,19 @@ import be.nmine.gtd.infrastructure.basket.BasketRoomDao
 import be.nmine.gtd.infrastructure.basket.InboxZeroRepositoryRoom
 import be.nmine.gtd.infrastructure.basket.InboxZeroRoom
 import be.nmine.gtd.infrastructure.basket.StuffRoom
+import be.nmine.gtd.infrastructure.nextAction.NextActionRoom
+import be.nmine.gtd.infrastructure.nextAction.NextActionRoomDao
 import be.nmine.gtd.infrastructure.trash.TrashRoom
 import be.nmine.gtd.infrastructure.trash.TrashRoomDao
 
-@Database(entities = [StuffRoom::class, ActionRoom::class, TrashRoom::class,InboxZeroRoom::class],
-    version = 4, exportSchema = false)
+@Database(
+    entities = [StuffRoom::class, ActionRoom::class, TrashRoom::class, InboxZeroRoom::class, NextActionRoom::class],
+    version = 5, exportSchema = false
+)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun stuffDao(): BasketRoomDao
     abstract fun actionDao(): ActionRoomDao
     abstract fun trashDao(): TrashRoomDao
+    abstract fun nextActionDao(): NextActionRoomDao
     abstract fun inboxZeroRoom(): InboxZeroRepositoryRoom
 }

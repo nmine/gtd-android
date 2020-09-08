@@ -12,7 +12,7 @@ class NextActionRepositoryInMemory : NextActionRepository {
         return nextActions.filter { nextAction ->  nextAction.name == name }.first()
     }
 
-    override fun save(nextAction: NextAction) {
+    override suspend fun save(nextAction: NextAction) {
         nextActions.add(nextAction)
     }
 

@@ -2,9 +2,11 @@ package be.nmine.gtd.di
 
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
+import be.nmine.gtd.domain.nextaction.NextActionRepository
 import be.nmine.gtd.domain.trash.TrashRepository
 import be.nmine.gtd.infrastructure.action.ActionRepositoryRoom
 import be.nmine.gtd.infrastructure.basket.BasketRoom
+import be.nmine.gtd.infrastructure.nextAction.NextActionRepositoryRoom
 import be.nmine.gtd.infrastructure.trash.TrashRepositoryRoom
 import dagger.Binds
 import dagger.Module
@@ -28,5 +30,9 @@ abstract class Module {
     @Binds
     @Singleton
     abstract fun bindTrashRepository(impl: TrashRepositoryRoom): TrashRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindNextActionRepository(impl: NextActionRepositoryRoom): NextActionRepository
 
 }
