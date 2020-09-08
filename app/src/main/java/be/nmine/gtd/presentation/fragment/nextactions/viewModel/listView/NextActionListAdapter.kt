@@ -17,9 +17,10 @@ class NextActionListAdapter(
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context!!.layoutInflater
-        val rowView = inflater.inflate(R.layout.action_list_view_items, null, true)
+        val rowView = inflater.inflate(R.layout.next_action_list_view_items, null, true)
 
         val subtitleText = rowView.findViewById(R.id.description) as TextView
+        subtitleText.text = description[position]
         return rowView
     }
 }

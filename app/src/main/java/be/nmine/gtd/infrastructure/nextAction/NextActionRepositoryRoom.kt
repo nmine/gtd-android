@@ -22,7 +22,7 @@ class NextActionRepositoryRoom @Inject constructor(private val nextActionRoomDao
     }
 
     override suspend fun save(nextAction: NextAction) {
-        TODO("Not yet implemented")
+        nextActionRoomDao.save(NextActionRoom(name = nextAction.name))
     }
 
 }

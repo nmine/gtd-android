@@ -75,6 +75,21 @@ class ActionViewModelTest {
         }
     }
 
+    @Test
+    fun can_move_action_item_to_next_action() {
+        val action =  Action("test")
+        testCoroutineRule.runBlockingTest {
+            //Given
+            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            //When
+            viewModel.moveToNextAction(action)
+            //Then
+            verify(actionRepository).remove(action)
+        }
+    }
+
+
+
     @After
     fun tearDown() {
         // do something if required

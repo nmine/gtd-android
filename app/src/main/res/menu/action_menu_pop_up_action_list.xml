@@ -4,5 +4,9 @@
         android:id="@+id/menu_delete"
         android:icon="@drawable/ic_baseline_inbox_24"
         android:title="Delete" />
+    <item
+        android:id="@+id/menu_move_to_next_action"
+        android:icon="@drawable/ic_baseline_inbox_24"
+        android:title="Move to NextActions" />
 
 </menu>

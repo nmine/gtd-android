@@ -5,7 +5,6 @@ import be.nmine.gtd.domain.basket.Stuff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.Duration
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao,
@@ -43,9 +42,9 @@ class BasketRoom @Inject constructor(private val basketRoomDao: BasketRoomDao,
     }
 
     override suspend fun updateTimeSinceLastInboxZero() {
-        val inboxZero = inboxZeroRepositoryRoom.getInboxZero("default").first()
-        inboxZero.timestamp = LocalDateTime.now().atZone(java.time.ZoneOffset.UTC).toEpochSecond()
-        inboxZeroRepositoryRoom.update(inboxZero)
+//        val inboxZero = inboxZeroRepositoryRoom.getInboxZero("default").first()
+//        inboxZero.timestamp = LocalDateTime.now().atZone(java.time.ZoneOffset.UTC).toEpochSecond()
+//        inboxZeroRepositoryRoom.update(inboxZero)
     }
 
 }

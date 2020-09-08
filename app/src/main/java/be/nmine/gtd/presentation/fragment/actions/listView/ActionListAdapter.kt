@@ -46,6 +46,11 @@ class ActionListAdapter(
                         actionViewModel.deleteAction(Action(description[position]))
                         true
                     }
+                    R.id.menu_move_to_next_action -> {
+                        val fragment = ActionsFragment()
+                        actionViewModel.moveToNextAction(Action(description[position]))
+                        true
+                    }
                     else -> false
                 }
             }
