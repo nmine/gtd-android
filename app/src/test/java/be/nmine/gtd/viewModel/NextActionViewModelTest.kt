@@ -62,6 +62,27 @@ class NextActionViewModelTest {
         }
     }
 
+    @Test
+    fun viewModel_should_be_able_to_create_next_action_from_action_item() {
+        val nextAction =  NextAction("test")
+        testCoroutineRule.runBlockingTest {
+            //Given
+            var flow: Flow<MutableList<NextAction?>> =
+                flowOf(
+                    mutableListOf<NextAction?>(nextAction))
+            Mockito.doReturn(flow)
+                .`when`(nextActionRepository)
+                .getAll()
+            val viewModel = NextActionViewModel(nextActionRepository, SavedStateHandle())
+            //When
+            viewModel.nextActionNamesLiveData.observeForever(observer)
+            //Then
+            verify(nextActionRepository).getAll()
+            verify(observer).onChanged(mutableListOf("test"))
+            viewModel.nextActionNamesLiveData.removeObserver(observer)
+        }
+    }
+
     @After
     fun tearDown() {
         // do something if required

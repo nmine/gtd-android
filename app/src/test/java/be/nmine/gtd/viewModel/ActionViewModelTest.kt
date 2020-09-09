@@ -3,8 +3,10 @@ package be.nmine.gtd.viewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
+import be.nmine.gtd.application.organise.createnextaction.CreateNextActionsHandler
 import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
+import be.nmine.gtd.domain.nextaction.NextActionRepository
 import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -34,6 +36,9 @@ class ActionViewModelTest {
     private lateinit var actionRepository: ActionRepository
 
     @Mock
+    private lateinit var nextActionRepository: NextActionRepository
+
+    @Mock
     private lateinit var observer: Observer<List<String?>>
 
     @Before
@@ -43,10 +48,11 @@ class ActionViewModelTest {
 
     @Test
     fun delete_action_call_on_viewModel_should_call_delete_actions_on_repository() {
-        val action =  Action("test")
+        val action = Action("test")
         testCoroutineRule.runBlockingTest {
             //Given
-            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            val viewModel =
+                ActionViewModel(actionRepository, createNextActionHandler(), SavedStateHandle())
             //When
             viewModel.deleteAction(action)
             //Then
@@ -56,16 +62,18 @@ class ActionViewModelTest {
 
     @Test
     fun viewModel_should_return_live_data_with_correct_value() {
-        val action =  Action("test")
+        val action = Action("test")
         testCoroutineRule.runBlockingTest {
             //Given
             var flow: Flow<MutableList<Action?>> =
                 flowOf(
-                    mutableListOf<Action?>(action))
+                    mutableListOf<Action?>(action)
+                )
             Mockito.doReturn(flow)
                 .`when`(actionRepository)
                 .getAll()
-            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            val viewModel =
+                ActionViewModel(actionRepository, createNextActionHandler(), SavedStateHandle())
             //When
             viewModel.actionNamesLiveData.observeForever(observer)
             //Then
@@ -77,17 +85,22 @@ class ActionViewModelTest {
 
     @Test
     fun can_move_action_item_to_next_action() {
-        val action =  Action("test")
+        val action = Action("test")
         testCoroutineRule.runBlockingTest {
             //Given
-            val viewModel = ActionViewModel(actionRepository, SavedStateHandle())
+            val viewModel =
+                ActionViewModel(actionRepository, createNextActionHandler(), SavedStateHandle())
             //When
             viewModel.moveToNextAction(action)
             //Then
-            verify(actionRepository).remove(action)
+//            verify(nextActionRepository.save(any(NextAction::class.java)))
+//            verify(actionRepository.remove(any(Action::class.java)))
         }
     }
 
+    private fun createNextActionHandler(): CreateNextActionsHandler {
+        return CreateNextActionsHandler(nextActionRepository, actionRepository)
+    }
 
 
     @After
