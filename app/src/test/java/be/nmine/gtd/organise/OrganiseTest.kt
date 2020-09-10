@@ -8,7 +8,6 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
-import be.nmine.gtd.domain.nextaction.NextAction
 import be.nmine.gtd.domain.nextaction.NextActionRepository
 import be.nmine.gtd.domain.project.ProjectRepository
 import be.nmine.gtd.infrastructure.action.ActionRepositoryInMemory
@@ -60,42 +59,47 @@ class OrganiseTest {
         "Given one actionItem with name 'appeller christelle' is in the actionItems\n" +
                 "When I organise my actionsItems\n" +
                 "AND I create a new nextACtions from this actionItem with name 'appeller christelle'\n" +
-                "Then a new nextActions 'appeller christelle' is created\n" +
+                "Then a new nextActions 'appeller christelle des que possible' is created\n" +
                 "And the actionItem 'appeller christelle' is removed from actionItems"
     )
     fun `can organise a actionItem to nextAction`() = runBlocking {
         //Given
-        val action = Action("Application GTD")
+        val action = "Application GTD"
+        val nextAction = "appeller christelle des que possible"
+        actionRepository.saveAction(Action(action))
         //When
         CreateNextActionsHandler(
             nextActionRepository,
             actionRepository
         ).handle(
             CreateNextActionCommand(
-                action.name
+                nextAction = nextAction,
+                actionItem = action
             )
         )
         //Then
         assertThatActionItemsIsEmpty()
-        assertEquals(nextActionRepository.getNextAction(action.name).name, action.name)
+        assertEquals(nextActionRepository.getNextAction(nextAction).name, nextAction)
     }
 
     @Test
     fun `can get all nextAction`() = runBlocking {
         //Given
-        val nextAction = NextAction("Application GTD")
+        val nextAction = "Application GTD"
+        val actionItem = "Application GTD action"
         CreateNextActionsHandler(
             nextActionRepository,
             actionRepository
         ).handle(
             CreateNextActionCommand(
-                nextAction.name
+                nextAction = nextAction,
+                actionItem = actionItem
             )
         )
         //When
-        val allNextACtions = nextActionRepository.getAll()
+        val allNextActions = nextActionRepository.getAll()
         //Then
-        assertEquals(allNextACtions.first().get(0)?.name, nextAction.name)
+        assertEquals(allNextActions.first()[0]?.name, nextAction)
     }
 
     private suspend fun assertThatActionItemsIsEmpty() {

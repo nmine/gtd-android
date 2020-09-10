@@ -20,7 +20,6 @@ class ClarifyStuffHandler @Inject constructor(
             is ClarifyStuffToActionCommand -> {
                 val block: suspend CoroutineScope.() -> Unit = {
                     actionRepository.saveAction(Action(command.stuff.name))
-                    basket.remove(command.stuff)
                     basket.updateTimeSinceLastInboxZero()
                 }
                 runBlocking(block = block)

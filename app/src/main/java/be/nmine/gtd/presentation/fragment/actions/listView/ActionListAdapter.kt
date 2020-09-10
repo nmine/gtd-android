@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.FragmentActivity
 import be.nmine.gtd.R
-import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.presentation.fragment.actions.dialog.DialogNewNextActionFragment
 import be.nmine.gtd.presentation.fragment.actions.viewModel.ActionViewModel
 
@@ -47,19 +46,14 @@ class ActionListAdapter(
                         if (context != null) {
                             val dialogNewNextActionFragment = DialogNewNextActionFragment()
                             val bundle = Bundle()
-                            bundle.putString("title", description[position] )
+                            bundle.putString("currentAction", description[position] )
                             dialogNewNextActionFragment.arguments = bundle
                             dialogNewNextActionFragment.show(context.supportFragmentManager, TAG)
                         }
-
-//                        MaterialAlertDialogBuilder(context)
-                            // Add customization options here
-//                            .show()
-//                        actionViewModel.deleteAction(Action(description[position]))
                         true
                     }
                     R.id.menu_move_to_next_action -> {
-                        actionViewModel.moveToNextAction(Action(description[position]))
+//                        actionViewModel.moveToNextAction(nextAction = description[position], action =  nextAction)
                         true
                     }
                     else -> false

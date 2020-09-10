@@ -14,5 +14,5 @@ interface ActionRoomDao {
     suspend fun save(actionRoom: ActionRoom)
 
     @Query("DELETE FROM actions WHERE name = :name")
-    suspend fun delete(name:String)
+    suspend fun delete(name: String)
 }

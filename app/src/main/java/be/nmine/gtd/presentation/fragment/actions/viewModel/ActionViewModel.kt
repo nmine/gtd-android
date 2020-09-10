@@ -28,7 +28,7 @@ class ActionViewModel @ViewModelInject constructor(
         actionRepository.remove(action)
     }
 
-    fun moveToNextAction(action: Action) = viewModelScope.launch {
-        createNextActionsHandler.handle(CreateNextActionCommand(action.name))
+    fun moveToNextAction(action: String, nextAction: String) = viewModelScope.launch {
+        createNextActionsHandler.handle(CreateNextActionCommand(actionItem = action,nextAction = nextAction))
     }
 }
