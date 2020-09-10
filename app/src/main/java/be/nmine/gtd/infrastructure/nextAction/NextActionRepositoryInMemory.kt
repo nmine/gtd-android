@@ -16,6 +16,10 @@ class NextActionRepositoryInMemory : NextActionRepository {
         nextActions.add(nextAction)
     }
 
+    override suspend fun remove(nextAction: NextAction) {
+        nextActions.remove(nextAction)
+    }
+
     override fun getAll(): Flow<List<NextAction?>> {
         return flowOf(nextActions)
     }

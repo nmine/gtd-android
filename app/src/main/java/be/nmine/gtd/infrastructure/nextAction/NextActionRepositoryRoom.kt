@@ -25,4 +25,8 @@ class NextActionRepositoryRoom @Inject constructor(private val nextActionRoomDao
         nextActionRoomDao.save(NextActionRoom(name = nextAction.name))
     }
 
+    override suspend fun remove(nextAction: NextAction) {
+        nextActionRoomDao.delete(nextAction.name)
+    }
+
 }

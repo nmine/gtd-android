@@ -8,6 +8,7 @@ import be.nmine.gtd.domain.action.Action
 import be.nmine.gtd.domain.action.ActionRepository
 import be.nmine.gtd.domain.basket.Basket
 import be.nmine.gtd.domain.basket.Stuff
+import be.nmine.gtd.domain.nextaction.NextAction
 import be.nmine.gtd.domain.nextaction.NextActionRepository
 import be.nmine.gtd.domain.project.ProjectRepository
 import be.nmine.gtd.infrastructure.action.ActionRepositoryInMemory
@@ -80,6 +81,27 @@ class OrganiseTest {
         //Then
         assertThatActionItemsIsEmpty()
         assertEquals(nextActionRepository.getNextAction(nextAction).name, nextAction)
+    }
+
+    @Test
+    @DisplayName(
+        "# Story : As a User I want to delete the NextAction so That I can correct a error I made\n" +
+                "Given one nextActions with name 'appeller christelle' is in the nextActions\n" +
+                "And this nextAction is not dereded nor delegated\n" +
+                "When I delete the nextActions\n" +
+                "Then the nextAction 'appeller christelle' is not present in the list nextAction any more"
+    )
+    fun `can delete a nextAction that is not delegated nor defered`() = runBlocking {
+        //Given
+        val action = "appeller christelle"
+        val nextAction = NextAction(action)
+        nextActionRepository.save(nextAction)
+        //When
+        nextActionRepository.remove(nextAction)
+        //Then
+        nextActionRepository.getAll().collect {
+            assertTrue(it.isEmpty())
+        }
     }
 
     @Test

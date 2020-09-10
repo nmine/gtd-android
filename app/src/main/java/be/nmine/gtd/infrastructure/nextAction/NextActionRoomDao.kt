@@ -14,4 +14,7 @@ interface NextActionRoomDao {
     @Insert
     suspend fun save(nextAction: NextActionRoom)
 
+    @Query("DELETE FROM nextactions WHERE name = :name")
+    suspend fun delete(name: String)
+
 }
