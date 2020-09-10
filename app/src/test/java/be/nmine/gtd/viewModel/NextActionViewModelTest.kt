@@ -83,6 +83,19 @@ class NextActionViewModelTest {
         }
     }
 
+    @Test
+    fun viewModel_should_be_able_to_delete_action_item() {
+        val nextAction =  NextAction("test")
+        testCoroutineRule.runBlockingTest {
+            //Given
+            val viewModel = NextActionViewModel(nextActionRepository, SavedStateHandle())
+            //When
+            viewModel.deleteNextAction(nextAction)
+            //Then
+            verify(nextActionRepository).remove(nextAction)
+        }
+    }
+
     @After
     fun tearDown() {
         // do something if required
